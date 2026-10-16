@@ -1,0 +1,596 @@
+/* =========================================================
+   BARRA DE ACCESIBILIDAD SUPERIOR
+========================================================= */
+
+.pub-accessibility-bar {
+    background-color: #0b4a92;
+    color: #ffffff;
+    box-sizing: border-box;
+
+    height: 39px;
+    padding: 0.35rem 1.5rem;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: 0.82rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    z-index: 1100;
+}
+
+.pub-a11y-label {
+    margin-right: 0.25rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.pub-a11y-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.pub-a11y-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* =========================================================
+   HEADER E IDENTIDAD INSTITUCIONAL
+========================================================= */
+
+.pub-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    box-sizing: border-box;
+
+    position: fixed;
+    top: 39px;
+    left: 0;
+    width: 100%;
+
+    z-index: 1000;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.pub-header-inner {
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
+
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+
+    position: relative;
+}
+
+.pub-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    min-width: 0;
+
+    text-decoration: none;
+    color: inherit;
+}
+
+.pub-logo-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    background-color: #0284c7;
+    color: #ffffff;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.25rem;
+}
+
+.pub-logo-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.pub-logo-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.pub-logo-sub {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   NAVEGACIÓN PRINCIPAL
+========================================================= */
+
+.pub-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.pub-nav-link {
+    text-decoration: none;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    transition: color 0.2s ease;
+}
+
+.pub-nav-link:hover,
+.pub-nav-link.active {
+    color: #0284c7;
+}
+
+
+/* =========================================================
+   BOTÓN TOMAR HORA
+========================================================= */
+
+.pub-btn-login {
+    background-color: #0284c7;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 6px;
+
+    padding: 0.55rem 1.1rem;
+
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+.pub-btn-login:hover {
+    background-color: #0369a1;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   BOTÓN HAMBURGUESA
+========================================================= */
+
+.pub-hamburger {
+    display: none;
+
+    flex: 0 0 44px;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    padding: 0;
+
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+
+    font-size: 1.8rem;
+    line-height: 1;
+    color: #0f172a;
+
+    cursor: pointer;
+
+    position: relative;
+    z-index: 1006;
+}
+
+.pub-hamburger:hover {
+    background-color: #f1f5f9;
+}
+
+.pub-hamburger:focus-visible {
+    outline: 3px solid #0284c7;
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MENÚ MÓVIL TIPO OVERLAY
+   Se conservan estos estilos por compatibilidad.
+========================================================= */
+
+.pub-mobile-menu {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background-color: rgba(15, 23, 42, 0.6);
+
+    z-index: 1200;
+
+    justify-content: flex-end;
+}
+
+.pub-mobile-menu.active {
+    display: flex;
+}
+
+.pub-mobile-menu-panel {
+    background-color: #ffffff;
+
+    width: 280px;
+    max-width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+    padding: 2rem 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    position: relative;
+}
+
+.pub-mobile-menu-close {
+    position: absolute;
+
+    top: 1rem;
+    right: 1rem;
+
+    background: none;
+    border: none;
+
+    font-size: 1.25rem;
+
+    cursor: pointer;
+}
+
+.pub-mobile-menu-link {
+    text-decoration: none;
+
+    color: #334155;
+
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   ESPACIO SUPERIOR PARA EL CONTENIDO
+========================================================= */
+
+body {
+    padding-top: 109px;
+}
+
+
+/* =========================================================
+   RESPONSIVE: TABLETS Y MÓVILES
+========================================================= */
+
+@media (max-width: 850px) {
+
+    /* Mantiene la barra de accesibilidad dentro de la pantalla */
+    .pub-accessibility-bar {
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 0.35rem;
+
+        padding: 0.35rem 0.75rem;
+    }
+
+    .pub-header {
+        top: 39px;
+    }
+
+    /* El contenido del header utiliza el ancho disponible */
+    .pub-header-inner {
+        width: 100%;
+        max-width: 100%;
+
+        box-sizing: border-box;
+
+        padding: 0.75rem 12px;
+
+        gap: 10px;
+
+        position: relative;
+    }
+
+    /* Evita que el logo empuje la hamburguesa fuera de pantalla */
+    .pub-header .pub-logo {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .pub-logo-text {
+        min-width: 0;
+    }
+
+    /* Menú cerrado inicialmente */
+    .pub-header .pub-nav {
+        display: none;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        width: 100%;
+        max-width: 100%;
+
+        box-sizing: border-box;
+
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+
+        gap: 0;
+
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+
+        padding: 0.5rem 12px 1rem;
+        margin: 0;
+
+        background-color: #ffffff;
+        border-top: 1px solid #e2e8f0;
+
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
+
+        z-index: 1005;
+    }
+
+    /* El JavaScript añade active al pulsar la hamburguesa */
+    .pub-header .pub-nav.active {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    /* Enlaces del menú */
+    .pub-header .pub-nav .pub-nav-link {
+        display: block;
+
+        width: 100%;
+        box-sizing: border-box;
+
+        padding: 0.9rem 0.75rem;
+
+        color: #334155;
+        font-size: 1rem;
+        text-decoration: none;
+
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .pub-header .pub-nav .pub-nav-link:hover,
+    .pub-header .pub-nav .pub-nav-link.active {
+        color: #0284c7;
+        background-color: #f1f5f9;
+    }
+
+    /* Botón Tomar Hora dentro del menú desplegado */
+    .pub-header .pub-nav .pub-btn-login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        box-sizing: border-box;
+
+        margin-top: 0.85rem;
+        padding: 0.8rem 1rem;
+    }
+
+    /* Hamburguesa visible y con dimensiones fijas */
+    .pub-header .pub-hamburger {
+        display: inline-flex;
+
+        flex: 0 0 44px;
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+
+        margin-left: auto;
+
+        padding: 0;
+
+        box-sizing: border-box;
+
+        background: transparent;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+
+        color: #0f172a;
+        font-size: 1.8rem;
+        line-height: 1;
+
+        cursor: pointer;
+
+        position: relative;
+        z-index: 1006;
+    }
+
+    .pub-header .pub-hamburger:hover {
+        background-color: #f1f5f9;
+    }
+
+    .pub-header .pub-hamburger:focus-visible {
+        outline: 3px solid #0284c7;
+        outline-offset: 3px;
+    }
+
+    body {
+        padding-top: 114px;
+    }
+}
+
+
+/* =========================================================
+   PANTALLAS MUY PEQUEÑAS
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .pub-accessibility-bar {
+        height: 34px;
+
+        gap: 0.25rem;
+
+        padding: 0.3rem 0.5rem;
+
+        font-size: 0.75rem;
+    }
+
+    .pub-a11y-label {
+        display: none;
+    }
+
+    .pub-a11y-btn {
+        padding: 0.15rem 0.4rem;
+        font-size: 0.75rem;
+    }
+
+    .pub-header {
+        top: 34px;
+    }
+
+    .pub-header-inner {
+        width: 100%;
+        max-width: 100%;
+
+        padding: 0.65rem 8px;
+        gap: 8px;
+    }
+
+    .pub-logo {
+        gap: 0.5rem;
+    }
+
+    .pub-logo-icon {
+        width: 36px;
+        height: 36px;
+
+        font-size: 1.1rem;
+    }
+
+    .pub-logo-name {
+        font-size: 0.9rem;
+        overflow-wrap: anywhere;
+    }
+
+    .pub-logo-sub {
+        font-size: 0.7rem;
+    }
+
+    .pub-header .pub-hamburger {
+        flex-basis: 42px;
+        width: 42px;
+        min-width: 42px;
+        height: 42px;
+    }
+
+    .pub-header .pub-nav {
+        padding-left: 8px;
+        padding-right: 8px;
+
+        max-height: calc(100vh - 100px);
+    }
+
+    body {
+        padding-top: 100px;
+    }
+}
+
+
+/* =========================================================
+   MODO OSCURO: MENÚ MÓVIL
+========================================================= */
+
+@media (max-width: 850px) {
+
+    body.dark-mode .pub-header {
+        background-color: #17212e;
+        border-bottom-color: #3b4b5e;
+    }
+
+    body.dark-mode .pub-logo-name {
+        color: #f1f5f9;
+    }
+
+    body.dark-mode .pub-logo-sub {
+        color: #94a3b8;
+    }
+
+    body.dark-mode .pub-header .pub-nav {
+        background-color: #17212e;
+        border-top-color: #3b4b5e;
+
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-mode .pub-header .pub-nav .pub-nav-link {
+        color: #e2e8f0;
+        border-bottom-color: #3b4b5e;
+    }
+
+    body.dark-mode .pub-header .pub-nav .pub-nav-link:hover,
+    body.dark-mode .pub-header .pub-nav .pub-nav-link.active {
+        color: #93c5fd;
+        background-color: #263445;
+    }
+
+    body.dark-mode .pub-header .pub-hamburger {
+        color: #f1f5f9;
+        border-color: #3b4b5e;
+        background-color: #17212e;
+    }
+
+    body.dark-mode .pub-header .pub-hamburger:hover {
+        background-color: #263445;
+    }
+}

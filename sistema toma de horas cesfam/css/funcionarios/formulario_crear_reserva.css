@@ -1,0 +1,711 @@
+
+/* =========================================================
+   FORMULARIO CREAR RESERVA - POPUP
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   CONTENEDOR GENERAL DEL POPUP
+   --------------------------------------------------------- */
+
+#createReservationSection {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+#createReservationSection[hidden] {
+    display: none;
+}
+
+/* Bloquea el scroll de la página cuando el popup está abierto */
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------------------
+   MODAL
+   --------------------------------------------------------- */
+
+.create-reservation-modal {
+    width: min(900px, 100%);
+    max-height: 90vh;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+
+    padding: 30px;
+
+    position: relative;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------------
+   CABECERA
+   --------------------------------------------------------- */
+
+.create-reservation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.create-reservation-header h2 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.create-reservation-close {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #374151;
+
+    font-size: 25px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.create-reservation-close:hover {
+    background: #e5e7eb;
+    color: #111827;
+
+    transform: scale(1.05);
+}
+
+
+/* ---------------------------------------------------------
+   NOTIFICACIÓN
+   --------------------------------------------------------- */
+
+.create-reservation-notification {
+    display: none;
+
+    width: 100%;
+
+    margin-bottom: 20px;
+    padding: 13px 16px;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+
+    color: #1e40af;
+
+    font-size: 14px;
+
+    box-sizing: border-box;
+}
+
+.create-reservation-notification.show {
+    display: block;
+}
+
+.create-reservation-notification.success {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #047857;
+}
+
+.create-reservation-notification.error {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #b91c1c;
+}
+
+
+/* ---------------------------------------------------------
+   FORMULARIO
+   --------------------------------------------------------- */
+
+.create-reservation-form {
+    width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   SECCIONES
+   --------------------------------------------------------- */
+
+.create-form-section {
+    margin-bottom: 25px;
+}
+
+.create-form-section:last-child {
+    margin-bottom: 0;
+}
+
+.create-form-section-title {
+    margin: 0 0 18px;
+
+    color: #1f2937;
+
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* ---------------------------------------------------------
+   GRID DEL FORMULARIO
+   --------------------------------------------------------- */
+
+.create-form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.create-form-group {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.create-form-group.full {
+    grid-column: 1 / -1;
+}
+
+
+/* ---------------------------------------------------------
+   LABELS
+   --------------------------------------------------------- */
+
+.create-form-group label {
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.create-form-group label .required {
+    color: #dc2626;
+}
+
+
+/* ---------------------------------------------------------
+   INPUTS / SELECT / TEXTAREA
+   --------------------------------------------------------- */
+
+.create-form-group input,
+.create-form-group select,
+.create-form-group textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #1f2937;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.create-form-group input,
+.create-form-group select {
+    min-height: 44px;
+}
+
+.create-form-group textarea {
+    min-height: 105px;
+
+    resize: vertical;
+}
+
+.create-form-group input:focus,
+.create-form-group select:focus,
+.create-form-group textarea:focus {
+    border-color: #0074c8;
+
+    box-shadow: 0 0 0 3px rgba(0, 116, 200, 0.12);
+}
+
+.create-form-group input:disabled,
+.create-form-group select:disabled,
+.create-form-group textarea:disabled {
+    background: #f3f4f6;
+
+    color: #6b7280;
+
+    cursor: not-allowed;
+}
+
+
+/* ---------------------------------------------------------
+   OPCIONES DE IDENTIFICACIÓN
+   --------------------------------------------------------- */
+
+.create-identification-options {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+.create-identification-option {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 9px 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.create-identification-option:hover {
+    border-color: #0074c8;
+
+    background: #f8fbff;
+}
+
+.create-identification-option input {
+    width: auto;
+    min-height: auto;
+
+    margin: 0;
+
+    cursor: pointer;
+}
+
+.create-identification-option span {
+    cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------
+   MENSAJES DE ERROR
+   --------------------------------------------------------- */
+
+.create-form-error {
+    display: none;
+
+    margin-top: 6px;
+
+    color: #dc2626;
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.create-form-error.show {
+    display: block;
+}
+
+
+/* ---------------------------------------------------------
+   ESTADO DEL HORARIO
+   --------------------------------------------------------- */
+
+.create-horario-estado {
+    min-height: 20px;
+
+    margin-top: 7px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+.create-horario-estado.success {
+    color: #047857;
+}
+
+.create-horario-estado.error {
+    color: #b91c1c;
+}
+
+
+/* ---------------------------------------------------------
+   RESUMEN DE LA RESERVA
+   --------------------------------------------------------- */
+
+.create-reservation-preview {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e7eb;
+}
+
+.create-preview-header {
+    margin-bottom: 16px;
+}
+
+.create-preview-header h3 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.create-preview-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.create-preview-item {
+    min-width: 0;
+
+    padding: 12px 14px;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+}
+
+.create-preview-label {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.create-preview-item span:last-child {
+    display: block;
+
+    overflow-wrap: anywhere;
+
+    color: #1f2937;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* ---------------------------------------------------------
+   BOTONES
+   --------------------------------------------------------- */
+
+.create-reservation-actions {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.create-cancel-button,
+.create-submit-button {
+    min-height: 44px;
+
+    padding: 11px 20px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.create-cancel-button {
+    border: 1px solid #d1d5db;
+
+    background: #ffffff;
+
+    color: #374151;
+}
+
+.create-cancel-button:hover {
+    background: #f3f4f6;
+
+    border-color: #9ca3af;
+}
+
+.create-submit-button {
+    border: 1px solid #0074c8;
+
+    background: #0074c8;
+
+    color: #ffffff;
+}
+
+.create-submit-button:hover {
+    background: #005baa;
+
+    border-color: #005baa;
+
+    box-shadow: 0 4px 12px rgba(0, 91, 170, 0.2);
+
+    transform: translateY(-1px);
+}
+
+.create-submit-button:disabled,
+.create-cancel-button:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* ---------------------------------------------------------
+   ESTADOS DE VALIDACIÓN DE CAMPOS
+   --------------------------------------------------------- */
+
+.create-form-group input.input-error,
+.create-form-group select.input-error,
+.create-form-group textarea.input-error {
+    border-color: #dc2626;
+}
+
+.create-form-group input.input-error:focus,
+.create-form-group select.input-error:focus,
+.create-form-group textarea.input-error:focus {
+    border-color: #dc2626;
+
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+.create-form-group input.input-success,
+.create-form-group select.input-success,
+.create-form-group textarea.input-success {
+    border-color: #10b981;
+}
+
+
+/* ---------------------------------------------------------
+   SCROLLBAR DEL MODAL
+   --------------------------------------------------------- */
+
+.create-reservation-modal::-webkit-scrollbar {
+    width: 8px;
+}
+
+.create-reservation-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.create-reservation-modal::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+.create-reservation-modal::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    #createReservationSection {
+        padding: 12px;
+
+        align-items: flex-start;
+    }
+
+    .create-reservation-modal {
+        width: 100%;
+
+        max-height: 95vh;
+
+        padding: 20px;
+
+        border-radius: 15px;
+    }
+
+    .create-reservation-header {
+        margin-bottom: 20px;
+
+        padding-bottom: 15px;
+    }
+
+    .create-reservation-header h2 {
+        font-size: 21px;
+    }
+
+    .create-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .create-form-group.full {
+        grid-column: auto;
+    }
+
+    .create-preview-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .create-reservation-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .create-cancel-button,
+    .create-submit-button {
+        width: 100%;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   PANTALLAS MUY PEQUEÑAS
+   --------------------------------------------------------- */
+
+@media (max-width: 450px) {
+
+    #createReservationSection {
+        padding: 8px;
+    }
+
+    .create-reservation-modal {
+        padding: 16px;
+
+        border-radius: 13px;
+    }
+
+    .create-reservation-header h2 {
+        font-size: 19px;
+    }
+
+    .create-reservation-close {
+        width: 36px;
+        height: 36px;
+
+        font-size: 22px;
+    }
+
+    .create-identification-options {
+        flex-direction: column;
+    }
+
+    .create-identification-option {
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+    .create-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .create-reservation-preview {
+        padding: 15px;
+    }
+}
+

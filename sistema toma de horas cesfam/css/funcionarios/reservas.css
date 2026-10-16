@@ -1,0 +1,3590 @@
+/* =========================================================
+   GESTIÓN DE RESERVAS - PANEL ADMINISTRATIVO
+   Compatible con gestionar_reserva.php
+   ========================================================= */
+
+
+/* =========================================================
+   GENERAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    background: #f4f6f9;
+
+    color: #1f2937;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+   ========================================================= */
+
+.admin-layout {
+    min-height: calc(100vh - 76px);
+
+    display: flex;
+
+    padding-top: 76px;
+    padding-left: 250px;
+}
+
+
+.admin-content {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 35px 40px 50px;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   ENCABEZADO RESERVAS
+   ========================================================= */
+
+.reservation-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+
+.page-kicker {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #0074c8;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+}
+
+
+.reservation-header h1 {
+    margin: 0 0 8px;
+
+    color: #1f2937;
+
+    font-size: 30px;
+
+    line-height: 1.2;
+}
+
+
+.reservation-header p {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.reservation-header-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =========================================================
+   BOTÓN CREAR RESERVA
+   ========================================================= */
+
+.create-reservation-button {
+    min-height: 43px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 16px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: linear-gradient(
+        90deg,
+        #f28c28,
+        #0074c8
+    );
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 4px 10px rgba(0, 116, 200, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.create-reservation-button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(0, 116, 200, 0.22);
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.reservation-error {
+    margin-bottom: 20px;
+
+    padding: 13px 16px;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 9px;
+
+    background: #fef2f2;
+
+    color: #b91c1c;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FILTROS
+   ========================================================= */
+
+.reservation-filters {
+    display: grid;
+
+    grid-template-columns:
+        minmax(180px, 1.4fr)
+        minmax(160px, 1fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        auto;
+
+    align-items: end;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+
+    padding: 20px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.04);
+}
+
+
+.filter-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.filter-group label {
+    color: #374151;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+
+    min-height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.filter-group input:hover,
+.filter-group select:hover {
+    border-color: #93c5fd;
+}
+
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: #0074c8;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 116, 200, 0.12);
+}
+
+
+/* =========================================================
+   ACCIONES FILTROS
+   ========================================================= */
+
+.filter-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.filter-button,
+.clear-filter-button {
+    min-height: 42px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 13px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.filter-button {
+    border: 0;
+
+    background: #0074c8;
+
+    color: #ffffff;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.filter-button:hover {
+    background: #005baa;
+
+    transform: translateY(-1px);
+}
+
+
+.clear-filter-button {
+    border: 1px solid #d1d5db;
+
+    background: #ffffff;
+
+    color: #4b5563;
+}
+
+
+.clear-filter-button:hover {
+    border-color: #0074c8;
+
+    color: #005baa;
+
+    background: #f8fbff;
+}
+
+
+/* =========================================================
+   RESUMEN DE RESERVAS
+   ========================================================= */
+
+.reservation-summary {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    margin-bottom: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.04);
+}
+
+
+.summary-card {
+    min-height: 105px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px 20px;
+
+    border-right: 1px solid #e5e7eb;
+
+    background: #ffffff;
+}
+
+
+.summary-card:last-child {
+    border-right: 0;
+}
+
+
+.summary-card > div:last-child {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.summary-card > div:last-child span {
+    color: #6b7280;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.summary-card strong {
+    color: #1f2937;
+
+    font-size: 24px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   ICONOS RESUMEN
+   ========================================================= */
+
+.summary-card-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eff6ff;
+
+    color: #005baa;
+
+    font-size: 18px;
+}
+
+
+.summary-card-icon.total {
+    background: #eff6ff;
+
+    color: #005baa;
+}
+
+
+.summary-card-icon.confirmed {
+    background: #ecfdf5;
+
+    color: #047857;
+}
+
+
+.summary-card-icon.cancelled {
+    background: #fef2f2;
+
+    color: #b91c1c;
+}
+
+
+.summary-card-icon.rescheduled {
+    background: #f5f3ff;
+
+    color: #7c3aed;
+}
+
+
+/* =========================================================
+   CONTENEDOR DE RESERVAS
+   ========================================================= */
+
+.reservation-container {
+    margin-bottom: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.04);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ENCABEZADO CONTENEDOR
+   ========================================================= */
+
+.reservation-container-header {
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 18px 24px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    background: #ffffff;
+}
+
+
+.reservation-container-header h2 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 19px;
+}
+
+
+.reservation-container-header p {
+    margin: 4px 0 0;
+
+    color: #6b7280;
+
+    font-size: 12px;
+}
+
+
+.reservation-date {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+
+    color: #1769aa;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLA
+   ========================================================= */
+
+.reservation-table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.reservation-table {
+    width: 100%;
+
+    min-width: 900px;
+
+    border-collapse: collapse;
+}
+
+
+.reservation-table thead th {
+    height: 46px;
+
+    padding: 0 15px;
+
+    background: #f8fafc;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    color: #6b7280;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.reservation-table tbody td {
+    padding: 14px 15px;
+
+    border-bottom: 1px solid #eef0f3;
+
+    color: #374151;
+
+    font-size: 12px;
+
+    vertical-align: middle;
+}
+
+
+.reservation-table tbody tr {
+    transition:
+        background 0.15s ease;
+}
+
+
+.reservation-table tbody tr:hover {
+    background: #fafcff;
+}
+
+
+.reservation-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   ID RESERVA
+   ========================================================= */
+
+.reservation-id {
+    color: #6b7280;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   USUARIO
+   ========================================================= */
+
+.user-cell {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 180px;
+}
+
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #f28c28,
+        #0074c8
+    );
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.user-cell > div:last-child {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    min-width: 0;
+}
+
+
+.user-cell strong {
+    color: #374151;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.user-cell span {
+    max-width: 180px;
+
+    color: #9ca3af;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   HORA
+   ========================================================= */
+
+.reservation-time {
+    color: #005baa !important;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ESTADOS
+   ========================================================= */
+
+.status {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 26px;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.status.confirmed {
+    background: #ecfdf5;
+
+    color: #047857;
+}
+
+
+.status.cancelled {
+    background: #fef2f2;
+
+    color: #b91c1c;
+}
+
+
+.status.rescheduled {
+    background: #eff6ff;
+
+    color: #1d4ed8;
+}
+
+
+.status.unknown {
+    background: #f3f4f6;
+
+    color: #6b7280;
+}
+
+
+/* =========================================================
+   ACCIONES TABLA
+   ========================================================= */
+
+.reservation-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+
+    min-width: 360px;
+}
+
+
+.action-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 78px;
+
+    height: 34px;
+
+    padding: 7px 12px;
+
+    border: 1px solid #d9dee5;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    line-height: 1;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.action-button:hover {
+    background: #f3f4f6;
+
+    border-color: #cbd5e1;
+
+    transform: translateY(-1px);
+}
+
+
+/* VER */
+
+.action-button.view {
+    min-width: 58px;
+
+    color: #1769aa;
+
+    border-color: #b9d5eb;
+}
+
+
+.action-button.view:hover {
+    background: #eaf4fb;
+
+    color: #12578e;
+}
+
+
+/* REAGENDAR */
+
+.action-button.reschedule {
+    min-width: 88px;
+
+    color: #b45309;
+
+    border-color: #f3c98b;
+}
+
+
+.action-button.reschedule:hover {
+    background: #fff7ed;
+
+    color: #92400e;
+}
+
+
+/* CANCELAR */
+
+.action-button.cancel {
+    min-width: 78px;
+
+    color: #dc2626;
+
+    border-color: #f0b7b7;
+}
+
+
+.action-button.cancel:hover {
+    background: #fef2f2;
+
+    color: #b91c1c;
+}
+
+
+/* NOTIFICAR */
+
+.action-button.notify {
+    min-width: 82px;
+
+    color: #15803d;
+
+    border-color: #b7dfc2;
+}
+
+
+.action-button.notify:hover {
+    background: #f0fdf4;
+
+    color: #166534;
+}
+
+
+/* =========================================================
+   ESTADO VACÍO
+   ========================================================= */
+
+.empty-reservations {
+    min-height: 220px;
+
+    padding: 40px 20px !important;
+
+    text-align: center;
+}
+
+
+.empty-reservations > div {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+}
+
+
+.empty-icon {
+    margin-bottom: 5px;
+
+    font-size: 32px;
+}
+
+
+.empty-reservations strong {
+    color: #374151;
+
+    font-size: 13px;
+}
+
+
+.empty-reservations span {
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   FOOTER DE TABLA
+   ========================================================= */
+
+.reservation-footer {
+    min-height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 15px 24px;
+
+    border-top: 1px solid #e5e7eb;
+
+    background: #fafafa;
+
+    color: #6b7280;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   PAGINACIÓN
+   ========================================================= */
+
+.pagination {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+.pagination a {
+    width: 32px;
+    height: 32px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #dbe3ea;
+
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+
+.pagination a:hover {
+    border-color: #93c5fd;
+
+    background: #f5f9ff;
+
+    color: #005baa;
+}
+
+
+.pagination a.active {
+    border-color: #0074c8;
+
+    background: #0074c8;
+
+    color: #ffffff;
+}
+
+
+.pagination a.disabled {
+    opacity: 0.45;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   DETALLE DE RESERVA
+   ========================================================= */
+
+.reservation-detail {
+    margin-top: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.04);
+
+    overflow: hidden;
+}
+
+
+.detail-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 0;
+
+    padding: 5px 24px 20px;
+}
+
+
+.detail-item {
+    min-height: 70px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 12px 15px;
+
+    border-bottom: 1px solid #eef0f3;
+}
+
+
+.detail-item:nth-child(odd) {
+    border-right: 1px solid #eef0f3;
+}
+
+
+.detail-item span {
+    color: #9ca3af;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.detail-item strong {
+    color: #374151;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PANELES DE GESTIONAR RESERVA
+   ========================================================= */
+
+.panel-card {
+    margin-bottom: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 2px 7px rgba(0, 0, 0, 0.04);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TÍTULO DE PANEL
+   ========================================================= */
+
+.panel-title {
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 18px 24px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    background: #ffffff;
+}
+
+
+.panel-title h2,
+.panel-title h3 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 19px;
+}
+
+
+.panel-title p {
+    margin: 4px 0 0;
+
+    color: #6b7280;
+
+    font-size: 12px;
+}
+
+
+.result-count {
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+
+    color: #1769aa;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FORMULARIOS DE GESTIÓN
+   ========================================================= */
+
+.filter-form,
+.availability-form,
+.reservation-create-form {
+    padding: 24px;
+}
+
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px 20px;
+}
+
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.form-group label {
+    color: #374151;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    min-height: 43px;
+
+    padding: 0 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group textarea {
+    min-height: 90px;
+
+    padding: 12px 13px;
+
+    resize: vertical;
+}
+
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: #93c5fd;
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #0074c8;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 116, 200, 0.12);
+}
+
+
+/* =========================================================
+   BOTONES GENERALES DE GESTIÓN
+   ========================================================= */
+
+.primary-button {
+    min-height: 43px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 16px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: linear-gradient(
+        90deg,
+        #f28c28,
+        #0074c8
+    );
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 10px rgba(0, 116, 200, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.primary-button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(0, 116, 200, 0.22);
+}
+
+
+.secondary-button {
+    min-height: 43px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 16px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.secondary-button:hover {
+    background: #f9fafb;
+
+    border-color: #0074c8;
+
+    color: #005baa;
+}
+
+
+/* =========================================================
+   DISPONIBILIDAD
+   ========================================================= */
+
+.availability-form {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr auto;
+
+    align-items: end;
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   HORARIOS
+   ========================================================= */
+
+.available-hours {
+    padding: 0 24px 24px;
+}
+
+
+.available-hours h3 {
+    margin: 0 0 15px;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+
+.hours-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(110px, 1fr)
+        );
+
+    gap: 9px;
+}
+
+
+.hour-option {
+    min-height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #dbe3ea;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+
+.hour-option:hover {
+    transform: translateY(-1px);
+
+    border-color: #93c5fd;
+
+    background: #f5f9ff;
+
+    color: #005baa;
+}
+
+
+.hour-option input {
+    position: absolute;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.hour-option:has(input:checked) {
+    border-color: #0074c8;
+
+    background: linear-gradient(
+        90deg,
+        #fff3e6,
+        #eef6ff
+    );
+
+    color: #005baa;
+
+    box-shadow:
+        0 0 0 2px rgba(0, 116, 200, 0.12);
+}
+
+
+.helper-text {
+    margin: 12px 0 0;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   HORA SELECCIONADA
+   ========================================================= */
+
+.selected-hour-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 20px 24px 0;
+
+    padding: 13px 15px;
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 9px;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ACCIONES DE GESTIÓN
+   ========================================================= */
+
+.management-actions {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    padding: 18px 24px;
+
+    background: #fafafa;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+
+.action-button-management {
+    min-height: 38px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 0 13px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease;
+}
+
+
+.action-button-management:hover {
+    transform: translateY(-1px);
+}
+
+
+.confirm-button {
+    border: 1px solid #b7e4cf;
+
+    background: #f0fdf7;
+
+    color: #047857;
+}
+
+
+.confirm-button:hover {
+    background: #dcfce7;
+
+    border-color: #86efac;
+}
+
+
+.notify-button {
+    border: 1px solid #f6d58a;
+
+    background: #fffbeb;
+
+    color: #b45309;
+}
+
+
+.notify-button:hover {
+    background: #fef3c7;
+
+    border-color: #f59e0b;
+}
+
+
+.cancel-button {
+    border: 1px solid #f3c7c7;
+
+    background: #fff7f7;
+
+    color: #b91c1c;
+}
+
+
+.cancel-button:hover {
+    background: #fef2f2;
+
+    border-color: #fca5a5;
+}
+
+
+/* =========================================================
+   REAGENDAR
+   ========================================================= */
+
+.reschedule-box {
+    margin: 0 24px 24px;
+
+    padding: 20px;
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 10px;
+
+    background: #f8fbff;
+}
+
+
+.reschedule-box h3 {
+    margin: 0 0 15px;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ALERTAS
+   ========================================================= */
+
+.alert {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+    padding: 13px 16px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+.alert-success {
+    border: 1px solid #bbf7d0;
+
+    background: #f0fdf4;
+
+    color: #166534;
+}
+
+
+.alert-error {
+    border: 1px solid #fecaca;
+
+    background: #fef2f2;
+
+    color: #b91c1c;
+}
+
+
+/* =========================================================
+   ESTADOS VACÍOS
+   ========================================================= */
+
+.empty-state {
+    min-height: 180px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    padding: 30px;
+
+    color: #6b7280;
+
+    text-align: center;
+}
+
+
+.empty-state.small {
+    min-height: 120px;
+}
+
+
+.empty-state strong {
+    color: #374151;
+
+    font-size: 13px;
+}
+
+
+.empty-state span {
+    color: #9ca3af;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - 1100 PX
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .admin-content {
+        padding: 30px;
+    }
+
+
+    .reservation-filters {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .filter-actions {
+        grid-column: 1 / -1;
+
+        justify-content: flex-end;
+    }
+
+
+    .reservation-summary {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .summary-card:nth-child(2) {
+        border-right: 0;
+    }
+
+
+    .summary-card:nth-child(-n+2) {
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+
+    .availability-form {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .availability-form .primary-button {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 800 PX
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .admin-layout {
+        display: block;
+
+        padding-top: 68px;
+
+        padding-left: 0;
+    }
+
+
+    .admin-content {
+        padding: 25px 20px 40px;
+    }
+
+
+    .reservation-header {
+        flex-direction: column;
+    }
+
+
+    .reservation-header-actions {
+        width: 100%;
+    }
+
+
+    .create-reservation-button {
+        width: 100%;
+    }
+
+
+    .reservation-filters {
+        grid-template-columns: 1fr;
+    }
+
+
+    .filter-actions {
+        grid-column: auto;
+
+        justify-content: stretch;
+    }
+
+
+    .filter-button,
+    .clear-filter-button {
+        flex: 1;
+    }
+
+
+    .reservation-container-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .reservation-summary {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .summary-card {
+        border-right: 1px solid #e5e7eb;
+
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+
+    .summary-card:nth-child(2),
+    .summary-card:nth-child(4) {
+        border-right: 0;
+    }
+
+
+    .summary-card:nth-child(3),
+    .summary-card:nth-child(4) {
+        border-bottom: 0;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .availability-form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .detail-item:nth-child(odd) {
+        border-right: 0;
+    }
+
+
+    .detail-item {
+        border-bottom: 1px solid #eef0f3;
+    }
+
+
+    .detail-item:last-child {
+        border-bottom: 0;
+    }
+
+
+    .management-actions {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+
+    .action-button-management {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 600 PX
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .admin-content {
+        padding: 22px 15px 35px;
+    }
+
+
+    .reservation-header h1 {
+        font-size: 25px;
+    }
+
+
+    .reservation-header p {
+        font-size: 13px;
+    }
+
+
+    .reservation-container-header {
+        padding: 18px;
+    }
+
+
+    .reservation-container-header h2 {
+        font-size: 17px;
+    }
+
+
+    .reservation-footer {
+        padding: 15px 18px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .filter-form,
+    .availability-form,
+    .reservation-create-form {
+        padding: 18px;
+    }
+
+
+    .available-hours {
+        padding: 0 18px 18px;
+    }
+
+
+    .selected-hour-box {
+        margin: 18px 18px 0;
+    }
+
+
+    .reschedule-box {
+        margin: 0 18px 18px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - 450 PX
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .admin-content {
+        padding-left: 12px;
+
+        padding-right: 12px;
+    }
+
+
+    .hours-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .reservation-header h1 {
+        font-size: 23px;
+    }
+
+
+    .panel-title h2,
+    .panel-title h3 {
+        font-size: 17px;
+    }
+
+
+    .reservation-summary {
+        grid-template-columns: 1fr;
+    }
+
+
+    .summary-card {
+        border-right: 0;
+
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+
+    .summary-card:last-child {
+        border-bottom: 0;
+    }
+
+
+    .summary-card strong {
+        font-size: 21px;
+    }
+
+
+    .pagination a {
+        width: 29px;
+
+        height: 29px;
+    }
+
+}
+
+
+/* =========================================================
+   POPUP - VER RESERVA
+   ========================================================= */
+
+.reservation-view-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+
+.reservation-view-modal.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.reservation-view-modal[hidden] {
+    display: none;
+}
+
+
+/* =========================================================
+   VENTANA DEL POPUP
+   ========================================================= */
+
+.reservation-view-dialog {
+    width: min(820px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.25);
+
+    transform: translateY(10px) scale(0.98);
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.reservation-view-modal.active
+.reservation-view-dialog {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   ENCABEZADO POPUP
+   ========================================================= */
+
+.reservation-view-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 24px 28px;
+
+    background: linear-gradient(
+        135deg,
+        #0074c8,
+        #005baa
+    );
+
+    color: #ffffff;
+
+    border-radius:
+        18px 18px 0 0;
+}
+
+
+.reservation-view-kicker {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+}
+
+
+.reservation-view-header h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    line-height: 1.25;
+}
+
+
+/* =========================================================
+   BOTÓN CERRAR SUPERIOR
+   ========================================================= */
+
+.reservation-view-close {
+    width: 38px;
+
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.4
+    );
+
+    border-radius: 9px;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.12
+    );
+
+    color: #ffffff;
+
+    font-size: 26px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.reservation-view-close:hover {
+    background: rgba(
+        255,
+        255,
+        255,
+        0.22
+    );
+
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   CUERPO POPUP
+   ========================================================= */
+
+.reservation-view-body {
+    padding: 28px;
+}
+
+
+/* =========================================================
+   GRID INFORMACIÓN
+   ========================================================= */
+
+.reservation-view-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px 16px;
+}
+
+
+/* =========================================================
+   ITEM INFORMACIÓN
+   ========================================================= */
+
+.reservation-view-item {
+    min-width: 0;
+
+    padding: 15px 17px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.reservation-view-item:hover {
+    border-color: #dbeafe;
+
+    background: #f8fbff;
+}
+
+
+/* =========================================================
+   ITEM DE ANCHO COMPLETO
+   ========================================================= */
+
+.reservation-view-item-full {
+    grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   ETIQUETA ITEM
+   ========================================================= */
+
+.reservation-view-item span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #9ca3af;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+/* =========================================================
+   VALOR ITEM
+   ========================================================= */
+
+.reservation-view-item strong {
+    display: block;
+
+    color: #374151;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    line-height: 1.45;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   ESTADO DENTRO DEL POPUP
+   ========================================================= */
+
+#viewReservaEstado {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 26px;
+
+    width: fit-content;
+
+    padding: 4px 10px;
+
+    border-radius: 20px;
+
+    background: #eff6ff;
+
+    color: #1769aa;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   PIE POPUP
+   ========================================================= */
+
+.reservation-view-footer {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    padding: 0 28px 28px;
+}
+
+
+/* =========================================================
+   BOTÓN CERRAR INFERIOR
+   ========================================================= */
+
+.reservation-view-button {
+    min-width: 100px;
+
+    min-height: 38px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 16px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.reservation-view-button:hover {
+    background: #f8fbff;
+
+    border-color: #0074c8;
+
+    color: #005baa;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SCROLLBAR POPUP
+   ========================================================= */
+
+.reservation-view-dialog::-webkit-scrollbar {
+    width: 7px;
+}
+
+
+.reservation-view-dialog::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+
+.reservation-view-dialog::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+.reservation-view-dialog::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* =========================================================
+   POPUP REAGENDAR / MODIFICAR RESERVA
+   ========================================================= */
+
+.reservation-modify-form {
+    margin-top: 20px;
+
+    padding: 20px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+
+.reservation-modify-field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+.reservation-modify-field label {
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #334155;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+
+.reservation-modify-field input[type="date"],
+.reservation-modify-field select {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 0 14px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 9px;
+
+    background-color: #ffffff;
+
+    color: #1e293b;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   INPUT FECHA
+   ========================================================= */
+
+.reservation-modify-field input[type="date"] {
+    cursor: pointer;
+
+    position: relative;
+}
+
+
+.reservation-modify-field input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+
+    filter:
+        invert(32%)
+        sepia(85%)
+        saturate(1200%)
+        hue-rotate(185deg)
+        brightness(90%)
+        contrast(90%);
+
+    padding: 4px;
+
+    border-radius: 4px;
+
+    transition: transform 0.15s ease;
+}
+
+
+.reservation-modify-field input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    transform: scale(1.15);
+}
+
+
+/* =========================================================
+   SELECT HORA
+   ========================================================= */
+
+.reservation-modify-field select {
+    cursor: pointer;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    -moz-appearance: none;
+
+    background-image:
+        url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230074c8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+
+    background-repeat: no-repeat;
+
+    background-position: right 14px center;
+
+    background-size: 16px 16px;
+
+    padding-right: 38px;
+}
+
+
+/* =========================================================
+   ESTADOS HOVER Y FOCUS
+   ========================================================= */
+
+.reservation-modify-field input[type="date"]:hover,
+.reservation-modify-field select:not(:disabled):hover {
+    border-color: #0074c8;
+
+    background-color: #f8fbff;
+}
+
+
+.reservation-modify-field input[type="date"]:focus,
+.reservation-modify-field select:focus {
+    border-color: #0074c8;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 116, 200, 0.15);
+
+    background-color: #ffffff;
+}
+
+
+/* =========================================================
+   ESTADO DESHABILITADO
+   ========================================================= */
+
+.reservation-modify-field select:disabled {
+    background-color: #f1f5f9;
+
+    border-color: #e2e8f0;
+
+    color: #94a3b8;
+
+    cursor: not-allowed;
+
+    background-image:
+        url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+
+/* =========================================================
+   TEXTO DE ESTADO
+   ========================================================= */
+
+.reservation-modify-status {
+    margin: 4px 0 0;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    border: 1px solid #dbeafe;
+
+    color: #1e40af;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.reservation-modify-status::before {
+    content: "ℹ";
+
+    font-weight: bold;
+
+    color: #0074c8;
+}
+
+
+/* =========================================================
+   BOTÓN PRIMARIO EN PIE DE POPUP
+   ========================================================= */
+
+.reservation-view-button.primary {
+    background: linear-gradient(
+        90deg,
+        #f28c28,
+        #0074c8
+    );
+
+    border: none;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 4px 10px rgba(0, 116, 200, 0.18);
+}
+
+
+.reservation-view-button.primary:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(0, 116, 200, 0.22);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   POPUP - MODIFICAR RESERVA
+   =========================================================
+   Este popup es creado dinámicamente por gestionar_reserva.js.
+   ========================================================= */
+
+.reservation-modal {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100vw !important;
+
+    height: 100vh !important;
+
+    min-width: 100% !important;
+
+    min-height: 100% !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    padding: 24px !important;
+
+    margin: 0 !important;
+
+    background: rgba(15, 23, 42, 0.58) !important;
+
+    overflow-y: auto !important;
+
+    overflow-x: hidden !important;
+
+    box-sizing: border-box !important;
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+.reservation-modal[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   FONDO DEL POPUP
+   ========================================================= */
+
+.reservation-modal-overlay {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+    background: rgba(15, 23, 42, 0.58) !important;
+
+    cursor: default;
+
+}
+
+
+/* =========================================================
+   CONTENIDO DEL POPUP
+   ========================================================= */
+
+.reservation-modal-content {
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    width: min(620px, 100%) !important;
+
+    max-width: 620px !important;
+
+    max-height: calc(100vh - 48px) !important;
+
+    margin: auto !important;
+
+    overflow-x: hidden !important;
+
+    overflow-y: auto !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e5e7eb !important;
+
+    border-radius: 18px !important;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.30) !important;
+
+    box-sizing: border-box !important;
+
+    animation:
+        reservationModalAppear 0.2s ease-out;
+}
+
+
+/* =========================================================
+   ANIMACIÓN POPUP
+   ========================================================= */
+
+@keyframes reservationModalAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   ENCABEZADO POPUP MODIFICAR
+   ========================================================= */
+
+.reservation-modal-header {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    min-height: 72px;
+
+    padding: 18px 24px;
+
+    background: linear-gradient(
+        135deg,
+        #0074c8,
+        #005baa
+    );
+
+    color: #ffffff;
+
+    border-radius:
+        18px 18px 0 0;
+}
+
+
+.reservation-modal-header h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    line-height: 1.25;
+}
+
+
+/* =========================================================
+   BOTÓN CERRAR POPUP MODIFICAR
+   ========================================================= */
+
+.reservation-modal-close {
+    width: 38px;
+
+    height: 38px;
+
+    flex: 0 0 38px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.40
+    );
+
+    border-radius: 9px;
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.12
+    );
+
+    color: #ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 25px;
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.reservation-modal-close:hover {
+    background: rgba(
+        255,
+        255,
+        255,
+        0.24
+    );
+
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   CUERPO POPUP MODIFICAR
+   ========================================================= */
+
+.reservation-modal-body {
+    padding: 24px;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   DATOS DE LA RESERVA
+   ========================================================= */
+
+.reservation-modal-body .reservation-detail {
+    min-height: auto;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin: 0 0 10px;
+
+    padding: 11px 13px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    box-shadow: none;
+
+    overflow: visible;
+
+    color: #374151;
+
+    font-size: 12px;
+
+    line-height: 1.45;
+}
+
+
+.reservation-modal-body .reservation-detail strong {
+    flex: 0 0 125px;
+
+    color: #6b7280;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.reservation-modal-body .reservation-detail span {
+    min-width: 0;
+
+    flex: 1;
+
+    color: #1f2937;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   GRUPOS DEL FORMULARIO DEL POPUP
+   ========================================================= */
+
+.reservation-modal-body .form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    margin-top: 17px;
+}
+
+
+.reservation-modal-body .form-group label {
+    color: #374151;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.reservation-modal-body .form-group input,
+.reservation-modal-body .form-group select {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #374151;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 13px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.reservation-modal-body .form-group input:hover,
+.reservation-modal-body .form-group select:not(:disabled):hover {
+    border-color: #93c5fd;
+
+    background: #f8fbff;
+}
+
+
+.reservation-modal-body .form-group input:focus,
+.reservation-modal-body .form-group select:focus {
+    border-color: #0074c8;
+
+    box-shadow:
+        0 0 0 3px rgba(
+            0,
+            116,
+            200,
+            0.12
+        );
+}
+
+
+/* =========================================================
+   SELECT DE HORA
+   ========================================================= */
+
+#modifyReservaHora {
+    cursor: pointer;
+}
+
+
+#modifyReservaHora:disabled {
+    cursor: not-allowed;
+
+    background: #f1f5f9;
+
+    border-color: #e2e8f0;
+
+    color: #94a3b8;
+}
+
+
+/* =========================================================
+   ESTADO DE HORARIO
+   ========================================================= */
+
+#modifyReservaEstadoHorario {
+    display: block;
+
+    min-height: 18px;
+
+    margin-top: 5px;
+
+    color: #6b7280;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   ACCIONES DEL POPUP
+   ========================================================= */
+
+.reservation-modal-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 24px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+
+.reservation-modal-actions button {
+    min-height: 40px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 17px;
+
+    border-radius: 8px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   BOTÓN CANCELAR MODIFICACIÓN
+   ========================================================= */
+
+#btnCancelReservationModify {
+    border: 1px solid #d1d5db;
+
+    background: #ffffff;
+
+    color: #374151;
+}
+
+
+#btnCancelReservationModify:hover {
+    border-color: #9ca3af;
+
+    background: #f9fafb;
+
+    color: #1f2937;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   BOTÓN GUARDAR MODIFICACIÓN
+   ========================================================= */
+
+#btnSaveReservationModify {
+    border: 0;
+
+    background: linear-gradient(
+        90deg,
+        #f28c28,
+        #0074c8
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 4px 10px rgba(
+            0,
+            116,
+            200,
+            0.18
+        );
+}
+
+
+#btnSaveReservationModify:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 6px 14px rgba(
+            0,
+            116,
+            200,
+            0.24
+        );
+}
+
+
+#btnSaveReservationModify:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   BLOQUEO DEL SCROLL CUANDO EL MODAL ESTÁ ABIERTO
+   ========================================================= */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SCROLLBAR DEL POPUP MODIFICAR
+   ========================================================= */
+
+.reservation-modal-content::-webkit-scrollbar {
+    width: 7px;
+}
+
+
+.reservation-modal-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+
+.reservation-modal-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+.reservation-modal-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* =========================================================
+   RESPONSIVE POPUP MODIFICAR - 650 PX
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .reservation-modal {
+        padding: 14px !important;
+    }
+
+
+    .reservation-modal-content {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        max-height: calc(100vh - 28px) !important;
+
+        border-radius: 15px !important;
+    }
+
+
+    .reservation-modal-header {
+        min-height: 64px;
+
+        padding: 16px 18px;
+
+        border-radius:
+            15px 15px 0 0;
+    }
+
+
+    .reservation-modal-header h2 {
+        font-size: 18px;
+    }
+
+
+    .reservation-modal-body {
+        padding: 18px;
+    }
+
+
+    .reservation-modal-body .reservation-detail {
+        flex-direction: column;
+
+        gap: 3px;
+
+        padding: 10px 12px;
+    }
+
+
+    .reservation-modal-body .reservation-detail strong {
+        flex: none;
+
+        font-size: 10px;
+    }
+
+
+    .reservation-modal-body .reservation-detail span {
+        width: 100%;
+    }
+
+
+    .reservation-modal-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+
+    .reservation-modal-actions button {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE POPUP MODIFICAR - 450 PX
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .reservation-modal {
+        padding: 10px !important;
+    }
+
+
+    .reservation-modal-content {
+        max-height: calc(100vh - 20px) !important;
+
+        border-radius: 13px !important;
+    }
+
+
+    .reservation-modal-header {
+        padding: 15px;
+
+        border-radius:
+            13px 13px 0 0;
+    }
+
+
+    .reservation-modal-header h2 {
+        font-size: 17px;
+    }
+
+
+    .reservation-modal-close {
+        width: 34px;
+
+        height: 34px;
+
+        flex-basis: 34px;
+
+        font-size: 23px;
+    }
+
+
+    .reservation-modal-body {
+        padding: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE POPUP VER RESERVA - 650 PX
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .reservation-view-modal {
+        padding: 14px;
+    }
+
+
+    .reservation-view-header {
+        padding: 20px;
+
+        gap: 12px;
+    }
+
+
+    .reservation-view-header h2 {
+        font-size: 19px;
+    }
+
+
+    .reservation-view-body {
+        padding: 20px;
+    }
+
+
+    .reservation-view-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .reservation-view-item-full {
+        grid-column: auto;
+    }
+
+
+    .reservation-view-footer {
+        padding:
+            0 20px 20px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE POPUP VER RESERVA - 450 PX
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .reservation-view-header {
+        padding: 18px;
+    }
+
+
+    .reservation-view-body {
+        padding: 18px;
+    }
+
+
+    .reservation-view-footer {
+        padding:
+            0 18px 18px;
+    }
+
+
+    .reservation-view-close {
+        width: 34px;
+
+        height: 34px;
+
+        flex-basis: 34px;
+
+        font-size: 23px;
+    }
+
+
+    .reservation-view-item {
+        padding: 13px 14px;
+    }
+
+}

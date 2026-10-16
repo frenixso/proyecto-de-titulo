@@ -1,0 +1,360 @@
+
+/* =========================================================
+   BARRA DE ACCESIBILIDAD SUPERIOR
+   ========================================================= */
+.pub-accessibility-bar {
+  background-color: #0b4a92;
+  color: #ffffff;
+
+  height: 39px;
+  padding: 0.35rem 1.5rem;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-size: 0.82rem;
+
+  /*
+   * Barra fija para que las opciones de accesibilidad
+   * permanezcan disponibles mientras el usuario hace scroll.
+   */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  z-index: 1100;
+}
+
+.pub-a11y-label {
+  margin-right: 0.25rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.pub-a11y-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pub-a11y-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================================
+   HEADER E IDENTIDAD INSTITUCIONAL
+   ========================================================= */
+.pub-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+
+  /*
+   * El navbar queda inmediatamente debajo de la barra
+   * de accesibilidad.
+   */
+  position: fixed;
+  top: 39px;
+  left: 0;
+  width: 100%;
+
+  z-index: 1000;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.pub-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.pub-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.pub-logo-icon {
+  width: 40px;
+  height: 40px;
+
+  background-color: #0284c7;
+  color: #ffffff;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.25rem;
+}
+
+.pub-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.pub-logo-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.pub-logo-sub {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* =========================================================
+   NAVEGACIÓN PRINCIPAL
+   ========================================================= */
+.pub-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.pub-nav-link {
+  text-decoration: none;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  transition: color 0.2s ease;
+}
+
+.pub-nav-link:hover,
+.pub-nav-link.active {
+  color: #0284c7;
+}
+
+/* =========================================================
+   BOTÓN TOMAR HORA
+   ========================================================= */
+.pub-btn-login {
+  background-color: #0284c7;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 6px;
+
+  padding: 0.55rem 1.1rem;
+
+  font-weight: 600;
+  font-size: 0.9rem;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.pub-btn-login:hover {
+  background-color: #0369a1;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   HAMBURGUESA MÓVIL
+   ========================================================= */
+.pub-hamburger {
+  display: none;
+
+  background: none;
+  border: none;
+
+  font-size: 1.5rem;
+  color: #0f172a;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   MENÚ MÓVIL OVERLAY
+   ========================================================= */
+.pub-mobile-menu {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  background-color: rgba(15, 23, 42, 0.6);
+
+  z-index: 1200;
+
+  justify-content: flex-end;
+}
+
+.pub-mobile-menu.active {
+  display: flex;
+}
+
+.pub-mobile-menu-panel {
+  background-color: #ffffff;
+
+  width: 280px;
+  height: 100%;
+
+  padding: 2rem 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.25rem;
+
+  position: relative;
+}
+
+.pub-mobile-menu-close {
+  position: absolute;
+
+  top: 1rem;
+  right: 1rem;
+
+  background: none;
+  border: none;
+
+  font-size: 1.25rem;
+
+  cursor: pointer;
+}
+
+.pub-mobile-menu-link {
+  text-decoration: none;
+
+  color: #334155;
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* =========================================================
+   ESPACIO SUPERIOR PARA EL CONTENIDO
+   =========================================================
+   La barra de accesibilidad mide 39px.
+   El navbar comienza exactamente en 39px.
+
+   El contenido comienza después de ambas barras
+   para evitar que quede oculto.
+   ========================================================= */
+body {
+  padding-top: 109px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 850px) {
+
+  .pub-nav {
+    display: none;
+  }
+
+  .pub-hamburger {
+    display: block;
+  }
+
+  /*
+   * La barra mantiene su altura y permite que
+   * sus elementos se acomoden en pantallas pequeñas.
+   */
+  .pub-accessibility-bar {
+    justify-content: center;
+    flex-wrap: wrap;
+
+    padding: 0.35rem 0.75rem;
+  }
+
+  .pub-header {
+    top: 39px;
+  }
+
+  body {
+    padding-top: 114px;
+  }
+}
+
+/* =========================================================
+   PANTALLAS MUY PEQUEÑAS
+   ========================================================= */
+@media (max-width: 500px) {
+
+  .pub-accessibility-bar {
+    height: 34px;
+
+    gap: 0.25rem;
+
+    padding: 0.3rem 0.5rem;
+
+    font-size: 0.75rem;
+  }
+
+  .pub-a11y-label {
+    display: none;
+  }
+
+  .pub-a11y-btn {
+    padding: 0.15rem 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .pub-header-inner {
+    padding: 0.65rem 1rem;
+  }
+
+  .pub-logo {
+    gap: 0.5rem;
+  }
+
+  .pub-logo-icon {
+    width: 36px;
+    height: 36px;
+
+    font-size: 1.1rem;
+  }
+
+  .brand-title {
+    font-size: 0.9rem;
+  }
+
+  .pub-logo-sub {
+    font-size: 0.7rem;
+  }
+
+  /*
+   * En pantallas pequeñas la barra mide 34px,
+   * por lo que el navbar comienza exactamente ahí.
+   */
+  .pub-header {
+    top: 34px;
+  }
+
+  body {
+    padding-top: 100px;
+  }
+}
+

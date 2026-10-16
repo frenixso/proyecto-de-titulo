@@ -1,0 +1,374 @@
+/* =========================================================
+   DESIGN SYSTEM BASE - PORTAL DE FUNCIONARIOS
+   ========================================================= */
+
+:root {
+  --primary-color: #0074c8;
+  --primary-dark: #005baa;
+  --primary-light: #eaf4ff;
+  --accent-color: #e76f24;
+  --accent-light: #fff0df;
+  --bg-main: #f4f6f9;
+  --bg-card: #ffffff;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --topbar-height: 72px;
+  --sidebar-width: 260px;
+  --radius: 12px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   2. ESTRUCTURA APP-CONTAINER Y SIDEBAR
+   ========================================================= */
+
+.app-container {
+  display: flex;
+  padding-top: var(--topbar-height);
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: #ffffff;
+  border-right: 1px solid var(--border-color);
+  position: fixed;
+  top: var(--topbar-height);
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 12px;
+  z-index: 900;
+  overflow-y: auto;
+}
+
+.nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-link,
+.nav-link-logout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link-logout:hover {
+  background: var(--bg-main);
+  color: var(--primary-color);
+}
+
+.nav-link.active {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: 12px;
+}
+
+.nav-link-logout:hover {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+
+/* Overlay móvil */
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 850;
+}
+
+
+/* =========================================================
+   3. CONTENIDO PRINCIPAL
+   ========================================================= */
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 32px 40px;
+  min-width: 0;
+}
+
+.welcome-header {
+  margin-bottom: 28px;
+}
+
+.welcome-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.welcome-subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+
+/* Rejilla de Acciones y Estadísticas Principales */
+
+.main-actions-section {
+  margin-bottom: 32px;
+}
+
+.main-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.action-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.action-card-primary {
+  border-color: #b9d9f2;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
+}
+
+.action-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--primary-light);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-card-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.action-card-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background: var(--border-color);
+  margin: 32px 0;
+}
+
+
+/* =========================================================
+   ACCIONES RÁPIDAS
+   ========================================================= */
+
+.quick-access-section {
+  margin-bottom: 32px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quick-access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.quick-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.quick-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+}
+
+.quick-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--accent-light);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quick-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.quick-card-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.quick-card-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.quick-card-arrow {
+  color: var(--primary-color);
+  transition: transform 0.2s;
+}
+
+.quick-card:hover .quick-card-arrow {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   TARJETA ACTIVIDAD RECIENTE
+   ========================================================= */
+
+.appointment-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer-funcionario {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.footer-funcionario-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-funcionario-bottom {
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .btn-mobile-menu {
+    display: block;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 20px 16px;
+  }
+
+  .user-details {
+    display: none;
+  }
+}

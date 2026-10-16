@@ -1,0 +1,229 @@
+/* =========================================================
+   FOOTER FUNCIONARIO
+   CESFAM EDUARDO RAGGIO CATEMU
+
+   Archivo: css/compartidos/footer_funcionario.css
+
+   Componente único compartido por todos los módulos.
+   Diseño compacto, institucional y discreto.
+   ========================================================= */
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+.footer-funcionario {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 28px 0 0;
+    padding: 0;
+
+    background: #f8fafc;
+    color: #64748b;
+
+    border-top: 1px solid #e2e8f0;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.footer-funcionario *,
+.footer-funcionario *::before,
+.footer-funcionario *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   FILA PRINCIPAL
+   ========================================================= */
+
+.footer-funcionario-container {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    align-items: center;
+    gap: 16px;
+
+    width: 100%;
+    margin: 0;
+    padding: 13px 24px;
+}
+
+/* =========================================================
+   INFORMACIÓN DEL SISTEMA
+   ========================================================= */
+
+.footer-funcionario-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+
+    min-width: 0;
+}
+
+.footer-funcionario-info strong {
+    display: block;
+    margin: 0;
+
+    color: #475569;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.footer-funcionario-info span {
+    display: block;
+
+    color: #8490a0;
+    font-size: 10px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   TEXTO CENTRAL
+   ========================================================= */
+
+.footer-funcionario-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+    text-align: center;
+}
+
+.footer-funcionario-center span {
+    color: #8490a0;
+    font-size: 10px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   VERSIÓN
+   ========================================================= */
+
+.footer-funcionario-version {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    min-width: 0;
+}
+
+.footer-funcionario-version span {
+    display: inline-block;
+
+    padding: 3px 8px;
+
+    background: transparent;
+    border: 1px solid #dce3eb;
+    border-radius: 4px;
+
+    color: #718096;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+/* =========================================================
+   COPYRIGHT
+   ========================================================= */
+
+.footer-funcionario-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 30px;
+    margin: 0;
+    padding: 7px 24px;
+
+    background: transparent;
+    border-top: 1px solid #edf1f5;
+
+    text-align: center;
+}
+
+.footer-funcionario-bottom span {
+    display: block;
+    max-width: 100%;
+
+    color: #94a0af;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media (max-width: 900px) {
+    .footer-funcionario-container {
+        gap: 12px;
+        padding: 12px 18px;
+    }
+}
+
+/* =========================================================
+   CELULARES
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .footer-funcionario {
+        margin-top: 24px;
+    }
+
+    .footer-funcionario-container {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 10px;
+        padding: 13px 15px;
+    }
+
+    .footer-funcionario-info {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .footer-funcionario-center {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .footer-funcionario-version {
+        grid-column: 2;
+        grid-row: 1;
+        justify-content: flex-end;
+    }
+
+    .footer-funcionario-bottom {
+        min-height: 30px;
+        padding: 7px 15px;
+    }
+}
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .footer-funcionario *,
+    .footer-funcionario *::before,
+    .footer-funcionario *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

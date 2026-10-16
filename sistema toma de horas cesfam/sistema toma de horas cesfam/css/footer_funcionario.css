@@ -1,0 +1,24 @@
+<?php
+/*
+ * ============================================
+ * FOOTER FUNCIONARIO
+ * ============================================
+ */
+?>
+<footer class="footer-funcionario">
+  <div class="footer-funcionario-container">
+    <div class="footer-funcionario-info">
+      <strong>Municipalidad</strong>
+      <span>Sistema de gestión municipal</span>
+    </div>
+    <div class="footer-funcionario-center">
+      <span>Uso interno exclusivo para funcionarios</span>
+    </div>
+    <div class="footer-funcionario-version">
+      <span>Versión 2.0</span>
+    </div>
+  </div>
+  <div class="footer-funcionario-bottom">
+    <span>© <?php echo date('Y'); ?> Municipalidad. Todos los derechos reservados.</span>
+  </div>
+</footer>

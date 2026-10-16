@@ -1,0 +1,390 @@
+
+/* =========================================================
+   SIDEBAR / NAVEGACIÓN LATERAL
+   CESFAM
+   ========================================================= */
+
+/* Contenedor Principal de la Sidebar */
+.sidebar {
+    width: 250px;
+    min-height: calc(100vh - 76px);
+
+    background: #ffffff;
+
+    border-right: 1px solid #e5e7eb;
+
+    position: fixed;
+
+    top: 76px;
+    left: 0;
+    bottom: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow-y: auto;
+
+    padding: 20px 15px;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* =========================================================
+   GRUPO DE NAVEGACIÓN (NAV-GROUP)
+   ========================================================= */
+
+.nav-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    width: 100%;
+}
+
+
+/* =========================================================
+   ENLACES DE NAVEGACIÓN (NAV-LINK)
+   ========================================================= */
+
+.nav-link {
+    width: 100%;
+
+    min-height: 46px;
+
+    padding: 0 13px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    border-radius: 9px;
+
+    color: #374151;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   EFECTO AL PASAR EL MOUSE
+   ========================================================= */
+
+.nav-link:hover {
+    background: #f1f5f9;
+
+    color: #0066a6;
+
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   ESTADO ACTIVO
+   ========================================================= */
+
+.nav-link.active {
+    background: #004b78;
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 3px 8px rgba(
+            0,
+            75,
+            120,
+            0.18
+        );
+
+    transform: none;
+}
+
+
+/* =========================================================
+   ICONO DEL ELEMENTO ACTIVO
+   ========================================================= */
+
+.nav-link.active .nav-icon {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   OPCIÓN DESTACADA: ASISTENTE IA
+   ========================================================= */
+
+.nav-link.nav-ai {
+    color: #2e8b57;
+
+    background: rgba(
+        46,
+        139,
+        87,
+        0.06
+    );
+
+    border: 1px dashed rgba(
+        46,
+        139,
+        87,
+        0.30
+    );
+}
+
+
+.nav-link.nav-ai:hover {
+    background: rgba(
+        46,
+        139,
+        87,
+        0.12
+    );
+
+    color: #247044;
+}
+
+
+/* =========================================================
+   SI ASISTENTE IA ESTÁ ACTIVO
+   ========================================================= */
+
+.nav-link.nav-ai.active {
+    background: #2e8b57;
+
+    color: #ffffff;
+
+    border-color: #2e8b57;
+
+    box-shadow:
+        0 3px 8px rgba(
+            46,
+            139,
+            87,
+            0.20
+        );
+}
+
+
+/* =========================================================
+   ICONOS DE NAVEGACIÓN
+   ========================================================= */
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.nav-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+
+/* =========================================================
+   PIE DE SIDEBAR & BOTÓN CERRAR SESIÓN
+   ========================================================= */
+
+.sidebar-footer {
+    margin-top: auto;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+
+.nav-link-logout {
+    width: 100%;
+
+    min-height: 46px;
+
+    padding: 0 13px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #374151;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nav-link-logout:hover {
+    background: #fef2f2;
+
+    color: #b91c1c;
+
+    transform: translateX(2px);
+}
+
+
+.nav-link-logout .nav-icon {
+    color: #dc2626;
+}
+
+
+.nav-link-logout:hover .nav-icon {
+    color: #b91c1c;
+}
+
+
+/* =========================================================
+   SCROLLBAR PERSONALIZADO
+   ========================================================= */
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+
+.sidebar::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #d3d8dd;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 220px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - DISPOSITIVOS MÓVILES Y PANTALLAS PEQUEÑAS
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 100%;
+
+        min-height: auto;
+
+        position: relative;
+
+        top: 0;
+        left: 0;
+        bottom: auto;
+
+        border-right: none;
+
+        border-bottom: 1px solid #e5e7eb;
+
+        overflow: visible;
+
+        padding: 12px;
+    }
+
+
+    .nav-group {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 6px;
+    }
+
+
+    .nav-link {
+        justify-content: center;
+
+        flex-direction: column;
+
+        padding: 8px 4px;
+
+        gap: 4px;
+
+        min-height: 60px;
+
+        text-align: center;
+
+        font-size: 11px;
+    }
+
+
+    .sidebar-footer {
+        margin-top: 10px;
+
+        padding-top: 10px;
+    }
+
+
+    .nav-link-logout {
+        justify-content: center;
+
+        flex-direction: column;
+
+        padding: 8px 4px;
+
+        gap: 4px;
+
+        min-height: 60px;
+
+        text-align: center;
+
+        font-size: 11px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .nav-group {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+```

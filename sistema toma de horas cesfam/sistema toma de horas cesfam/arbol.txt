@@ -1,0 +1,60 @@
+Listado de rutas de carpetas
+El número de serie del volumen es 0CB3-C79A
+C:.
+¦   arbol.txt
+¦   
++---api
+¦       crear_reserva.php
+¦       gestionar_reserva.php
+¦       login_funcionario.php
+¦       logout_funcionario.php
+¦       obtener_horarios.php
+¦       resumen_agenda.php
+¦       
++---componentes
+¦       auth_funcionario.php
+¦       footer_funcionario.php
+¦       footer_publico.php
+¦       formulario_crear_reserva.php
+¦       navbar_funcionario.php
+¦       navbar_publica.php
+¦       sidebar_funcionario.php
+¦       
++---config
+¦       conexion.php
+¦       
++---css
+¦       agenda.css
+¦       footer_funcionario.css
+¦       footer_publico.css
+¦       formulario_crear_reserva.css
+¦       general.css
+¦       horarios.css
+¦       index.css
+¦       login.css
+¦       navbar_funcionario.css
+¦       navbar_publica.css
+¦       panel.css
+¦       reservas.css
+¦       sidebar_funcionario.css
+¦       toma_horas.css
+¦       
++---funcionarios
+¦       agenda.php
+¦       gestionar_reserva.php
+¦       horarios.php
+¦       login.php
+¦       panel.php
+¦       
++---js
+¦       agenda.js
+¦       gestionar_reserva.js
+¦       horarios.js
+¦       login.js
+¦       script.js
+¦       toma_horas.js
+¦       
++---publicos
+        index.php
+        toma_horas.php
+        

@@ -1,0 +1,173 @@
+Listado de rutas de carpetas
+El número de serie del volumen es 0CB3-C79A
+C:\XAMPP\HTDOCS\SISTEMA TOMA DE HORAS CESFAM
+|   arbol_cesfam.txt
+|   
++---api
+|       chatbot.php
+|       crear_reserva.php
+|       gestionar_estructura.php
+|       gestionar_funcionarios.php
+|       gestionar_reserva.php
+|       login_funcionario.php
+|       logout_funcionario.php
+|       notificaciones.php
+|       obtener_departamentos.php
+|       obtener_horarios.php
+|       resumen_agenda.php
+|       web_multimedia.php
+|       
++---componentes
+|       auth_administracion_web.php
+|       auth_funcionario.php
+|       correos_reservas.php
+|       footer_funcionario.php
+|       footer_publico.php
+|       formulario_crear_reserva.php
+|       navbar_funcionario.php
+|       navbar_publica.php
+|       sidebar_funcionario.php
+|       
++---config
+|       conexion.php
+|       correo.php
+|       
++---css
+|   +---administracion_web
+|   |       administrar_web.css
+|   |       biblioteca_multimedia.css
+|   |       
+|   +---compartidos
+|   |       footer_funcionario.css
+|   |       footer_publico.css
+|   |       general.css
+|   |       navbar_funcionario.css
+|   |       navbar_publica.css
+|   |       sidebar_funcionario.css
+|   |       
+|   +---funcionarios
+|   |       agenda.css
+|   |       formulario_crear_reserva.css
+|   |       funcionarios.css
+|   |       gestionar_estructura.css
+|   |       horarios.css
+|   |       login.css
+|   |       panel.css
+|   |       reservas.css
+|   |       ver_horarios.css
+|   |       
+|   \---publicos
+|           index.css
+|           toma_horas.css
+|           
++---funcionarios
+|       administrar_web.php
+|       agenda.php
+|       biblioteca_multimedia.php
+|       gestionar_estructura.php
+|       gestionar_funcionarios.php
+|       gestionar_reserva.php
+|       horarios.php
+|       login.php
+|       panel.php
+|       ver_horarios.php
+|       
++---js
+|       agenda.js
+|       chatbot.js
+|       gestionar_estructura.js
+|       gestionar_funcionarios.js
+|       gestionar_reserva.js
+|       horarios.js
+|       login.js
+|       notificaciones.js
+|       script.js
+|       toma_horas.js
+|       
++---librerias
+|   \---PHPMailer-master
+|       |   COMMITMENT
+|       |   composer.json
+|       |   get_oauth_token.php
+|       |   LICENSE
+|       |   README.md
+|       |   SECURITY.md
+|       |   SMTPUTF8.md
+|       |   VERSION
+|       |   
+|       +---language
+|       |       phpmailer.lang-af.php
+|       |       phpmailer.lang-ar.php
+|       |       phpmailer.lang-as.php
+|       |       phpmailer.lang-az.php
+|       |       phpmailer.lang-ba.php
+|       |       phpmailer.lang-be.php
+|       |       phpmailer.lang-bg.php
+|       |       phpmailer.lang-bn.php
+|       |       phpmailer.lang-ca.php
+|       |       phpmailer.lang-cs.php
+|       |       phpmailer.lang-da.php
+|       |       phpmailer.lang-de.php
+|       |       phpmailer.lang-el.php
+|       |       phpmailer.lang-eo.php
+|       |       phpmailer.lang-es.php
+|       |       phpmailer.lang-et.php
+|       |       phpmailer.lang-fa.php
+|       |       phpmailer.lang-fi.php
+|       |       phpmailer.lang-fo.php
+|       |       phpmailer.lang-fr.php
+|       |       phpmailer.lang-gl.php
+|       |       phpmailer.lang-he.php
+|       |       phpmailer.lang-hi.php
+|       |       phpmailer.lang-hr.php
+|       |       phpmailer.lang-hu.php
+|       |       phpmailer.lang-hy.php
+|       |       phpmailer.lang-id.php
+|       |       phpmailer.lang-it.php
+|       |       phpmailer.lang-ja.php
+|       |       phpmailer.lang-ka.php
+|       |       phpmailer.lang-ko.php
+|       |       phpmailer.lang-ku.php
+|       |       phpmailer.lang-lt.php
+|       |       phpmailer.lang-lv.php
+|       |       phpmailer.lang-mg.php
+|       |       phpmailer.lang-mn.php
+|       |       phpmailer.lang-ms.php
+|       |       phpmailer.lang-nb.php
+|       |       phpmailer.lang-nl.php
+|       |       phpmailer.lang-pl.php
+|       |       phpmailer.lang-pt.php
+|       |       phpmailer.lang-pt_br.php
+|       |       phpmailer.lang-ro.php
+|       |       phpmailer.lang-ru.php
+|       |       phpmailer.lang-si.php
+|       |       phpmailer.lang-sk.php
+|       |       phpmailer.lang-sl.php
+|       |       phpmailer.lang-sr.php
+|       |       phpmailer.lang-sr_latn.php
+|       |       phpmailer.lang-sv.php
+|       |       phpmailer.lang-tl.php
+|       |       phpmailer.lang-tr.php
+|       |       phpmailer.lang-uk.php
+|       |       phpmailer.lang-ur.php
+|       |       phpmailer.lang-vi.php
+|       |       phpmailer.lang-zh.php
+|       |       phpmailer.lang-zh_cn.php
+|       |       
+|       \---src
+|               DSNConfigurator.php
+|               Exception.php
+|               OAuth.php
+|               OAuthTokenProvider.php
+|               PHPMailer.php
+|               POP3.php
+|               SMTP.php
+|               
++---publicos
+|       index.php
+|       toma_horas.php
+|       
+\---uploads
+    \---multimedia
+            .htaccess
+            

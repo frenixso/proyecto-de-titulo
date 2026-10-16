@@ -1,0 +1,1507 @@
+
+/* =========================================================
+   INDEX.CSS - Estilos del portal público
+   CESFAM EDUARDO RAGGIO CATEMU
+
+   Actualización:
+   - Se incorpora el diseño de noticias públicas.
+   - Se mantiene el diseño original de las demás secciones.
+   - Se incorpora compatibilidad con el modo oscuro.
+   - Se agregan ajustes responsive para las noticias.
+   ========================================================= */
+
+
+/* =========================================================
+   BANNER DE EMERGENCIA
+   ========================================================= */
+
+.pub-emergency-banner {
+  width: 100%;
+  background-color: #fef2f2;
+  border-top: 1px solid #fecaca;
+  border-bottom: 1px solid #fecaca;
+  padding: 0.75rem 1.5rem;
+}
+
+.pub-emergency-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-align: center;
+}
+
+.pub-emergency-icon {
+  font-size: 1.15rem;
+}
+
+.pub-emergency-text {
+  color: #991b1b;
+  font-size: 0.9rem;
+}
+
+.pub-emergency-text strong {
+  color: #7f1d1d;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   HERO SECTION - Estilo Azul Oscuro con Glassmorphism
+   ========================================================= */
+
+.pub-hero {
+  background: linear-gradient(135deg, #0050c8 0%, #0033a0 50%, #001f66 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4.5rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.pub-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 0.8fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.pub-hero-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+.pub-hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.pub-hero-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.pub-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pub-btn-hero-primary {
+  background-color: #ffffff;
+  color: #0033aa;
+  border: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.pub-btn-hero-primary:hover {
+  background-color: #f8fafc;
+  transform: translateY(-2px);
+}
+
+.pub-btn-hero-secondary {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.pub-btn-hero-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO TARJETA LATERAL (GLASSMORPHISM STAT CARD)
+   ========================================================= */
+
+.pub-hero-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.pub-hero-card-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pub-hero-stat {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pub-hero-stat:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.pub-hero-stat-icon {
+  font-size: 1.35rem;
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pub-hero-stat-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.pub-hero-stat-value {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: #ffffff;
+}
+
+.pub-hero-stat-label {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+
+/* =========================================================
+   NOTICIAS Y NOVEDADES DEL CESFAM
+   ========================================================= */
+
+.pub-news-section {
+  position: relative;
+}
+
+/* Cuadrícula de noticias */
+
+.pub-news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* Tarjeta individual */
+
+.pub-news-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.045);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.pub-news-card:hover {
+  transform: translateY(-4px);
+  border-color: #bfdbfe;
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.09);
+}
+
+/* Contenedor de la imagen */
+
+.pub-news-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #edf3f8;
+}
+
+/* Imagen cargada desde la biblioteca multimedia */
+
+.pub-news-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.35s ease;
+}
+
+.pub-news-card:hover .pub-news-image {
+  transform: scale(1.035);
+}
+
+/* Etiqueta para noticias destacadas */
+
+.pub-news-featured {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  max-width: calc(100% - 1.5rem);
+  padding: 0.4rem 0.7rem;
+  background-color: #fff7db;
+  border: 1px solid #f4dfa0;
+  border-radius: 7px;
+  color: #805b08;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+/* La etiqueta sobre la imagen */
+
+.pub-news-image-wrapper .pub-news-featured {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+}
+
+/* Alternativa visual si una noticia no tiene imagen */
+
+.pub-news-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 220px;
+  flex-shrink: 0;
+  background:
+    linear-gradient(
+      135deg,
+      #e9f4ff 0%,
+      #dcecf9 50%,
+      #e8f1fa 100%
+    );
+  color: #2875b9;
+  font-size: 3.2rem;
+}
+
+/* Cuerpo de la tarjeta */
+
+.pub-news-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.35rem 1.4rem 1.5rem;
+}
+
+/* Fecha y metadatos */
+
+.pub-news-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 0.85rem;
+}
+
+.pub-news-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #64748b;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+/* Título */
+
+.pub-news-title {
+  margin: 0 0 0.75rem;
+  color: #0f2f50;
+  font-size: 1.15rem;
+  font-weight: 750;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+/* Resumen o descripción */
+
+.pub-news-description {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+/* Mensaje cuando todavía no hay noticias */
+
+.pub-news-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background-color: #ffffff;
+  border: 1px dashed #cbd8e6;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.pub-news-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  margin-bottom: 1.1rem;
+  background-color: #eaf4fd;
+  border-radius: 50%;
+  font-size: 2rem;
+}
+
+.pub-news-empty h3 {
+  max-width: 520px;
+  margin: 0 0 0.65rem;
+  color: #1e3a5f;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.pub-news-empty p {
+  max-width: 530px;
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Accesibilidad */
+
+.pub-news-card:focus-within {
+  outline: 3px solid rgba(2, 132, 199, 0.25);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   ACCIONES RÁPIDAS
+   ========================================================= */
+
+.pub-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.pub-action-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.pub-action-card:hover {
+  transform: translateY(-4px);
+  border-color: #bae6fd;
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+}
+
+.pub-action-lock {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #64748b;
+  background-color: #f1f5f9;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+}
+
+.pub-action-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.pub-action-icon.blue {
+  background-color: #e0f2fe;
+}
+
+.pub-action-icon.green {
+  background-color: #dcfce7;
+}
+
+.pub-action-icon.teal {
+  background-color: #ccfbf1;
+}
+
+.pub-action-icon.orange {
+  background-color: #ffedd5;
+}
+
+.pub-action-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.pub-action-desc {
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   SOBRE NUESTRO CESFAM
+   ========================================================= */
+
+.pub-about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.pub-about-description {
+  font-size: 1.05rem;
+  color: #475569;
+  margin-bottom: 1.5rem;
+}
+
+.pub-pillar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.pub-pillar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #ffffff;
+  padding: 0.85rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 0.95rem;
+  color: #334155;
+}
+
+.pub-pillar-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.pub-about-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.pub-about-stat-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+.pub-about-stat-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0284c7;
+  margin-bottom: 0.25rem;
+}
+
+.pub-about-stat-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+
+/* =========================================================
+   SERVICIOS
+   ========================================================= */
+
+.pub-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pub-service-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pub-service-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.pub-service-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.pub-service-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.pub-service-desc {
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   HORARIOS Y CONTACTO
+   ========================================================= */
+
+.pub-schedule-grid,
+.pub-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.pub-schedule-card,
+.pub-contact-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pub-schedule-card.closed {
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+.pub-schedule-card.closed .pub-schedule-time {
+  color: #dc2626;
+}
+
+.pub-schedule-icon,
+.pub-contact-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.pub-schedule-day {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.pub-schedule-time {
+  color: #0284c7;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+.pub-contact-label {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.pub-contact-value {
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 0.25rem;
+}
+
+
+/* =========================================================
+   MODAL DE LOGIN Y MENSAJE DE CONTEXTO
+   ========================================================= */
+
+.pub-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.pub-modal-overlay.active {
+  display: flex;
+}
+
+.pub-modal-box {
+  background-color: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 440px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.pub-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.pub-modal-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.pub-modal-subtitle {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+.pub-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+.pub-modal-close:hover {
+  color: #0f172a;
+}
+
+.pub-modal-context {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #e0f2fe;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.pub-modal-context.hidden {
+  display: none;
+}
+
+.pub-form-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.pub-form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.35rem;
+}
+
+.pub-form-input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.pub-form-input:focus {
+  outline: none;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.pub-form-error {
+  display: none;
+  color: #dc2626;
+  font-size: 0.78rem;
+  margin-top: 0.25rem;
+}
+
+.pub-modal-login-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.pub-btn-submit-login {
+  width: 100%;
+  background-color: #0284c7;
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pub-btn-submit-login:hover {
+  background-color: #0369a1;
+}
+
+.pub-btn-claveunica {
+  width: 100%;
+  background-color: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pub-btn-claveunica:hover {
+  background-color: #1e293b;
+}
+
+
+/* =========================================================
+   ASISTENTE VIRTUAL IA Y FAB
+   ========================================================= */
+
+.pub-ai-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1500;
+}
+
+.pub-ai-fab-btn {
+  background-color: #0284c7;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.pub-ai-fab-btn:hover {
+  transform: scale(1.04);
+}
+
+.pub-ai-fab-emoji {
+  font-size: 1.35rem;
+}
+
+.pub-ai-fab-texts {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.pub-ai-fab-main {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.pub-ai-fab-sub {
+  font-size: 0.72rem;
+  opacity: 0.9;
+}
+
+.pub-ai-chat-panel {
+  display: none;
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.5rem;
+  width: 360px;
+  height: 480px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+  border: 1px solid #e2e8f0;
+  z-index: 1501;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pub-ai-chat-panel.active {
+  display: flex;
+}
+
+.pub-ai-chat-header {
+  background-color: #0284c7;
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pub-ai-chat-header-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pub-ai-avatar {
+  font-size: 1.25rem;
+  background: rgba(255, 255, 255, 0.2);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pub-ai-chat-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.pub-ai-online-badge {
+  font-size: 0.72rem;
+  opacity: 0.9;
+}
+
+.pub-ai-chat-close {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.pub-ai-chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background-color: #f8fafc;
+}
+
+.pub-ai-msg {
+  max-width: 85%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.pub-ai-msg.bot {
+  background-color: #ffffff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  align-self: flex-start;
+}
+
+.pub-ai-msg.user {
+  background-color: #0284c7;
+  color: #ffffff;
+  align-self: flex-end;
+}
+
+.pub-ai-chat-form {
+  padding: 0.75rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  gap: 0.5rem;
+  background-color: #ffffff;
+}
+
+.pub-ai-chat-input {
+  flex: 1;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.88rem;
+}
+
+.pub-ai-chat-send {
+  background-color: #0284c7;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   INFORMACIÓN DE CONTACTO - EXTENSIÓN
+   Mantiene el estilo visual existente
+   ========================================================= */
+
+.pub-contact-section {
+  margin-top: 2.5rem;
+}
+
+.pub-contact-section:first-of-type {
+  margin-top: 0;
+}
+
+.pub-contact-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.pub-contact-section-title span {
+  font-size: 1.35rem;
+}
+
+.pub-contact-section-title h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.pub-contact-detail {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #64748b;
+}
+
+.pub-contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.pub-contact-info-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.pub-contact-info-card:hover {
+  transform: translateY(-3px);
+  border-color: #bae6fd;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+}
+
+.pub-contact-info-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  background-color: #e0f2fe;
+}
+
+.pub-contact-info-card > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: left;
+}
+
+.pub-contact-info-card .pub-contact-label {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.pub-contact-info-card .pub-contact-value {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.pub-contact-info-card .pub-contact-detail {
+  margin-top: 0.1rem;
+}
+
+.pub-contact-link {
+  cursor: pointer;
+}
+
+.pub-contact-link:hover .pub-contact-value {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   MODO OSCURO - TARJETAS DEL INDEX
+   Color principal:
+   HEX: #1E3A5F
+   RGB: 30, 58, 95
+   ========================================================= */
+
+/*
+ * No modifica los colores del modo claro.
+ * Estas reglas solamente se aplican cuando
+ * el body tiene la clase "dark-mode".
+ */
+
+
+/* =========================================================
+   TARJETAS DEL PORTAL DE PACIENTES
+   ========================================================= */
+
+body.dark-mode .pub-action-card {
+  background-color: #1E3A5F !important;
+  border-color: #1E3A5F !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-action-name {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-action-desc {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-action-lock {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-action-card:hover {
+  border-color: #1E3A5F !important;
+}
+
+
+/* =========================================================
+   TARJETAS DE "QUIÉNES SOMOS"
+   ========================================================= */
+
+body.dark-mode .pub-pillar-item {
+  background-color: #1E3A5F !important;
+  border-color: #1E3A5F !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-pillar-item strong {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-about-stat-card {
+  background-color: #1E3A5F !important;
+  border-color: #1E3A5F !important;
+}
+
+
+/* =========================================================
+   TEXTO DE LAS TARJETAS DE QUIÉNES SOMOS
+   ========================================================= */
+
+body.dark-mode .pub-about-stat-label {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   TARJETAS DE SERVICIOS
+   ========================================================= */
+
+body.dark-mode .pub-service-card {
+  background-color: #1E3A5F !important;
+  border-color: #1E3A5F !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-service-name {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-service-desc {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   TARJETAS DE UBICACIÓN Y ATENCIÓN
+   ========================================================= */
+
+body.dark-mode .pub-schedule-card {
+  background-color: #1E3A5F !important;
+  border-color: #1E3A5F !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-schedule-day {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-schedule-time {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-schedule-card.closed .pub-schedule-time {
+  color: #dc2626 !important;
+}
+
+
+/* =========================================================
+   TARJETAS DE TELÉFONOS Y CONTACTO
+   ========================================================= */
+
+body.dark-mode .pub-contact-card {
+  background-color: #1E3A5F !important;
+  border-color: #1E3A5F !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-contact-label {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-contact-value {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-contact-detail {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   TARJETAS DE INFORMACIÓN DE CONTACTO
+   ========================================================= */
+
+body.dark-mode .pub-contact-info-card {
+  background-color: #1E3A5F !important;
+  border-color: #1E3A5F !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-contact-info-card .pub-contact-label {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-contact-info-card .pub-contact-value {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-contact-info-card .pub-contact-detail {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   MODO OSCURO - NOTICIAS
+   ========================================================= */
+
+body.dark-mode .pub-news-card {
+  background-color: #1E3A5F !important;
+  border-color: #365475 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-news-card:hover {
+  border-color: #527ba4 !important;
+}
+
+body.dark-mode .pub-news-image-wrapper {
+  background-color: #263f5d !important;
+}
+
+body.dark-mode .pub-news-image-placeholder {
+  background: linear-gradient(
+    135deg,
+    #28496b 0%,
+    #1e3a5f 100%
+  ) !important;
+  color: #d5eaff !important;
+}
+
+body.dark-mode .pub-news-title {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-news-description {
+  color: #e0eaf5 !important;
+}
+
+body.dark-mode .pub-news-date {
+  color: #d1dfed !important;
+}
+
+body.dark-mode .pub-news-featured {
+  background-color: #4a3d18 !important;
+  border-color: #806a2b !important;
+  color: #fff0b3 !important;
+}
+
+body.dark-mode .pub-news-empty {
+  background-color: #1E3A5F !important;
+  border-color: #52708f !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-news-empty-icon {
+  background-color: #294c70 !important;
+}
+
+body.dark-mode .pub-news-empty h3 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .pub-news-empty p {
+  color: #e0eaf5 !important;
+}
+
+
+/* =========================================================
+   TÍTULOS DE SECCIONES DE CONTACTO
+   ========================================================= */
+
+body.dark-mode .pub-contact-section-title h3 {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   EFECTOS HOVER EN MODO OSCURO
+   ========================================================= */
+
+body.dark-mode .pub-action-card:hover,
+body.dark-mode .pub-service-card:hover,
+body.dark-mode .pub-contact-card:hover,
+body.dark-mode .pub-contact-info-card:hover,
+body.dark-mode .pub-pillar-item:hover,
+body.dark-mode .pub-about-stat-card:hover {
+  border-color: #1E3A5F !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE: TABLETS
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .pub-news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .pub-hero-inner,
+  .pub-about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .pub-news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .pub-news-image-wrapper,
+  .pub-news-image-placeholder {
+    height: 200px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .pub-contact-section {
+    margin-top: 2rem;
+  }
+
+  .pub-contact-section-title {
+    justify-content: flex-start;
+  }
+
+  .pub-contact-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pub-contact-info-card {
+    padding: 1.25rem;
+  }
+
+  /* Noticias */
+
+  .pub-news-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .pub-news-card {
+    border-radius: 12px;
+  }
+
+  .pub-news-image-wrapper,
+  .pub-news-image-placeholder {
+    height: 215px;
+  }
+
+  .pub-news-content {
+    padding: 1.2rem;
+  }
+
+  .pub-news-title {
+    font-size: 1.08rem;
+  }
+
+  .pub-news-description {
+    font-size: 0.88rem;
+  }
+
+  .pub-news-empty {
+    padding: 2rem 1.1rem;
+  }
+
+  .pub-news-empty h3 {
+    font-size: 1.05rem;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .pub-hero-title {
+    font-size: 2.1rem;
+  }
+
+  .pub-ai-chat-panel {
+    width: calc(100vw - 2rem);
+    right: 1rem;
+    bottom: 5rem;
+  }
+
+  .pub-news-image-wrapper,
+  .pub-news-image-placeholder {
+    height: 190px;
+  }
+
+  .pub-news-content {
+    padding: 1rem;
+  }
+
+  .pub-news-meta {
+    align-items: flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCIR MOVIMIENTO SI EL USUARIO LO PREFIERE
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+}

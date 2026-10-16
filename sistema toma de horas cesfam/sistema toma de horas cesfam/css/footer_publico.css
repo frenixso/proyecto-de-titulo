@@ -1,0 +1,179 @@
+/* =========================================================
+   FOOTER PÚBLICO — CESFAM EDUARDO RAGGIO CATEMU
+   Archivo: css/footer_publico.css
+   ========================================================= */
+
+.pub-footer {
+    width: 100%;
+    background-color: #17365d;
+    color: #ffffff;
+    padding: 50px 25px 25px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.pub-footer-inner {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   SECCIÓN SUPERIOR (GRID DE COLUMNAS)
+   ========================================================= */
+
+.pub-footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 35px;
+}
+
+/* Marca y Descripción */
+.pub-footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pub-footer-brand .pub-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.pub-footer-brand .pub-logo-icon {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.pub-footer-brand .pub-logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.pub-footer-brand .pub-logo-name {
+    font-weight: 700;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.pub-footer-brand .pub-logo-sub {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.pub-footer-tagline {
+    color: #d5deea;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 420px;
+}
+
+/* Columnas de Navegación y Contacto */
+.pub-footer-col-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+}
+
+.pub-footer-link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pub-footer-link-list li {
+    margin: 0;
+}
+
+.pub-footer-link {
+    color: #d5deea;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.pub-footer-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* =========================================================
+   SECCIÓN INFERIOR (COPYRIGHT Y TECNOLOGÍAS)
+   ========================================================= */
+
+.pub-footer-bottom {
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.pub-footer-copyright {
+    margin: 0;
+    color: #c5d0dd;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.pub-footer-tech {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.pub-tech-badge {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+    .pub-footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .pub-footer-brand {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .pub-footer {
+        padding: 40px 20px 20px;
+    }
+
+    .pub-footer-top {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .pub-footer-brand {
+        grid-column: span 1;
+    }
+
+    .pub-footer-bottom {
+        margin-top: 10px;
+    }
+}
