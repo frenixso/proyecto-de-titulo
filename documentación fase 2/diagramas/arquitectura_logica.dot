@@ -1,0 +1,12 @@
+digraph G {
+ graph [rankdir=TB, bgcolor="white", pad="0.25", nodesep="0.42", ranksep="0.58", fontname="Arial", label="Arquitectura lógica de referencia — estado actual y límites", labelloc=t, fontsize=18];
+ node [shape=box, style="rounded,filled", fillcolor="#F3F7FB", color="#2F5D7E", fontname="Arial", fontsize=11, margin="0.16,0.10"];
+ edge [color="#536B7A", fontname="Arial", fontsize=9, arrowsize=0.8];
+ subgraph cluster_client { label="Presentación"; color="#C6D6E4"; style="rounded"; browser [label="Navegador web\nVisitante / Funcionario", fillcolor="#EAF4FF"]; public [label="Sitio público\nInformación + toma de horas"]; private [label="Panel privado\nGestión operativa + CMS"]; browser -> public; browser -> private; }
+ subgraph cluster_server { label="Aplicación — Apache + PHP (XAMPP en desarrollo)"; color="#D9B27A"; style="rounded"; routes [label="Páginas PHP y endpoints\nsolicitudes HTTP"]; auth [label="Autenticación, sesión\ny permisos"]; logic [label="Reglas de negocio\nvalidación y disponibilidad"]; cms [label="Módulos de administración web\nnoticias / tutoriales / multimedia\n(estado según módulo) "]; mail [label="Componente de correo\nPHPMailer + SMTP\n(validación integral pendiente)"]; routes -> auth; routes -> logic; routes -> cms; logic -> mail [style=dashed,label="cuando corresponda"]; }
+ db [label="PostgreSQL\ncesfam\nservicios · departamentos · horarios\nreservas · funcionarios · agendas", shape=cylinder, fillcolor="#EFF8F1", color="#53845C"];
+ smtp [label="Servidor SMTP externo\nBrevo (configuración a verificar)", shape=cloud, fillcolor="#FFF6E9", color="#C18A3A"];
+ public -> routes [label="HTTP/HTTPS"]; private -> routes [label="HTTP/HTTPS"]; logic -> db [dir=both,label="PDO / SQL parametrizado"]; auth -> db [dir=both]; cms -> db [dir=both]; mail -> smtp [label="SMTP"];
+ future [label="Docker: despliegue futuro\nNO implementado en esta entrega", shape=note, fillcolor="#FFF2F0", color="#B35B4D"];
+ future -> routes [style=dashed, arrowhead=none, label="etapa posterior"];
+}
