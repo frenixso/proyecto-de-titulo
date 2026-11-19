@@ -1,0 +1,1967 @@
+/* =========================================================
+   ADMINISTRACIÓN DE TUTORIALES
+   CESFAM EDUARDO RAGGIO CATEMU
+
+   Archivo: css/administracion_web/administrar_tutoriales.css
+
+   Funciones visuales:
+   - Listado y filtros de tutoriales.
+   - Tabla con paginación.
+   - Modal de creación y edición.
+   - Selector entre video local y YouTube.
+   - Vista previa de videos.
+   - Selección múltiple de categorías.
+   - Administración de categorías.
+   - Diseño adaptable a computador, tablet y celular.
+
+   Los estilos de navbar, sidebar y footer se mantienen
+   en sus hojas compartidas.
+   ========================================================= */
+
+
+/* =========================================================
+   1. BASE
+   ========================================================= */
+
+body.administrar-tutoriales-page {
+    margin: 0;
+    background: #f4f6f9;
+}
+
+.tutoriales-layout,
+.tutoriales-contenido,
+.tutoriales-contenido *,
+.tutoriales-contenido *::before,
+.tutoriales-contenido *::after,
+.tutoriales-modal,
+.tutoriales-modal *,
+.tutoriales-modal *::before,
+.tutoriales-modal *::after {
+    box-sizing: border-box;
+}
+
+.tutoriales-contenido,
+.tutoriales-modal {
+    color: #263445;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tutoriales-contenido [hidden],
+.tutoriales-modal[hidden],
+.tutoriales-modal [hidden] {
+    display: none !important;
+}
+
+.tutoriales-contenido button,
+.tutoriales-contenido input,
+.tutoriales-contenido select,
+.tutoriales-contenido textarea,
+.tutoriales-modal button,
+.tutoriales-modal input,
+.tutoriales-modal select,
+.tutoriales-modal textarea {
+    font: inherit;
+}
+
+.tutoriales-contenido button,
+.tutoriales-modal button {
+    cursor: pointer;
+}
+
+.tutoriales-contenido button:disabled,
+.tutoriales-modal button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   2. DISTRIBUCIÓN GENERAL
+   Separación respecto a la navbar y el sidebar.
+   ========================================================= */
+
+/*
+ * Se aumenta la separación superior del contenedor principal.
+ * Esta regla presupone que administrar_tutoriales.php utiliza
+ * el contenedor compartido .app-container.
+ */
+
+body.administrar-tutoriales-page .app-container {
+    padding-top: 85px !important;
+    box-sizing: border-box;
+}
+
+.tutoriales-layout {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.tutoriales-contenido {
+    width: calc(100% - 260px);
+    min-width: 0;
+    margin-left: 260px;
+    padding: 100px 30px 30px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   3. ENCABEZADO
+   ========================================================= */
+
+.tutoriales-encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 26px;
+}
+
+.tutoriales-encabezado-texto {
+    min-width: 0;
+}
+
+.tutoriales-volver {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #075ca8;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.tutoriales-volver:hover {
+    color: #003f78;
+    text-decoration: underline;
+}
+
+.tutoriales-encabezado h1 {
+    margin: 0 0 10px;
+    color: #1e3045;
+    font-size: clamp(24px, 2.3vw, 32px);
+    line-height: 1.25;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-encabezado p {
+    margin: 0;
+    color: #6b7786;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.tutoriales-encabezado-acciones {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex: 0 0 auto;
+}
+
+
+/* =========================================================
+   4. BOTONES PRINCIPALES Y SECUNDARIOS
+   ========================================================= */
+
+.tutoriales-contenido .btn-tutoriales-principal,
+.tutoriales-contenido .btn-tutoriales-secundario,
+.tutoriales-modal .btn-tutoriales-principal,
+.tutoriales-modal .btn-tutoriales-secundario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 11px 17px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.tutoriales-contenido .btn-tutoriales-principal,
+.tutoriales-modal .btn-tutoriales-principal {
+    background: linear-gradient(110deg, #f28c28, #e76f24);
+    border-color: #e76f24;
+    color: #ffffff;
+    box-shadow: 0 3px 8px rgba(231, 111, 36, 0.14);
+}
+
+.tutoriales-contenido .btn-tutoriales-principal:hover:not(:disabled),
+.tutoriales-modal .btn-tutoriales-principal:hover:not(:disabled) {
+    background: #d85e18;
+    border-color: #d85e18;
+    color: #ffffff;
+    box-shadow: 0 5px 12px rgba(216, 94, 24, 0.2);
+    transform: translateY(-1px);
+}
+
+.tutoriales-contenido .btn-tutoriales-secundario,
+.tutoriales-modal .btn-tutoriales-secundario {
+    background: #ffffff;
+    border-color: #d8dee7;
+    color: #344456;
+}
+
+.tutoriales-contenido .btn-tutoriales-secundario:hover:not(:disabled),
+.tutoriales-modal .btn-tutoriales-secundario:hover:not(:disabled) {
+    background: #f1f5f9;
+    border-color: #aebccc;
+    color: #344456;
+}
+
+.tutoriales-contenido .btn-tutoriales-principal:focus-visible,
+.tutoriales-contenido .btn-tutoriales-secundario:focus-visible,
+.tutoriales-modal .btn-tutoriales-principal:focus-visible,
+.tutoriales-modal .btn-tutoriales-secundario:focus-visible {
+    outline: 3px solid rgba(0, 116, 200, 0.28);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   5. INTRODUCCIÓN A LOS MÉTODOS DE VIDEO
+   ========================================================= */
+
+.tutoriales-introduccion {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+    align-items: stretch;
+    gap: 22px;
+    margin-bottom: 24px;
+    padding: 22px 24px;
+    background: #ffffff;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(28, 43, 61, 0.04);
+}
+
+.tutoriales-introduccion-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    min-width: 0;
+}
+
+.tutoriales-introduccion-icono {
+    display: flex;
+    flex: 0 0 45px;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    background: #eaf3fb;
+    color: #075ca8;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.tutoriales-introduccion-icono.youtube {
+    background: #fff0ed;
+    color: #c83527;
+}
+
+.tutoriales-introduccion-item h2 {
+    margin: 0 0 7px;
+    color: #24364a;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.tutoriales-introduccion-item p {
+    margin: 0;
+    color: #778394;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.tutoriales-introduccion-separador {
+    width: 1px;
+    min-height: 100%;
+    background: #e2e8f0;
+}
+
+
+/* =========================================================
+   6. PANELES
+   ========================================================= */
+
+.tutoriales-panel {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 24px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #e5eaf0;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(28, 43, 61, 0.04);
+}
+
+.tutoriales-panel-encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.tutoriales-panel-encabezado h2 {
+    margin: 0 0 7px;
+    color: #24364a;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.tutoriales-panel-encabezado p {
+    margin: 0;
+    color: #778394;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   7. FILTROS Y CAMPOS
+   ========================================================= */
+
+.tutoriales-filtros {
+    display: grid;
+    grid-template-columns:
+        minmax(220px, 2fr)
+        repeat(4, minmax(125px, 1fr));
+    align-items: end;
+    gap: 16px;
+}
+
+.tutoriales-campo {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.tutoriales-campo label {
+    color: #344456;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.tutoriales-campo label span {
+    color: #dc3545;
+}
+
+.tutoriales-campo input[type="text"],
+.tutoriales-campo input[type="search"],
+.tutoriales-campo input[type="url"],
+.tutoriales-campo input[type="number"],
+.tutoriales-campo input[type="file"],
+.tutoriales-campo select,
+.tutoriales-campo textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #d6dee8;
+    border-radius: 7px;
+    color: #263445;
+    font-size: 13px;
+    line-height: 1.5;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.tutoriales-campo textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.tutoriales-campo input[type="file"] {
+    padding: 7px;
+    background: #f8fafc;
+    cursor: pointer;
+}
+
+.tutoriales-campo input:focus,
+.tutoriales-campo select:focus,
+.tutoriales-campo textarea:focus {
+    border-color: #1682cf;
+    box-shadow: 0 0 0 3px rgba(22, 130, 207, 0.12);
+}
+
+.tutoriales-campo input::placeholder,
+.tutoriales-campo textarea::placeholder {
+    color: #9aa5b3;
+}
+
+.tutoriales-campo small {
+    color: #7b8796;
+    font-size: 11px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   8. MENSAJES DEL SISTEMA
+   ========================================================= */
+
+.tutoriales-mensaje {
+    margin-bottom: 22px;
+    padding: 14px 17px;
+    border: 1px solid #d8dee7;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #344456;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-mensaje.mensaje-exito {
+    background: #edf8f0;
+    border-color: #b8e2c3;
+    color: #21663a;
+}
+
+.tutoriales-mensaje.mensaje-error {
+    background: #fff0f0;
+    border-color: #f0c4c7;
+    color: #a12632;
+}
+
+.tutoriales-mensaje.mensaje-info {
+    background: #eef6ff;
+    border-color: #c7def7;
+    color: #18578e;
+}
+
+
+/* =========================================================
+   9. TABLA
+   ========================================================= */
+
+.tutoriales-tabla-contenedor {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e7ebf0;
+    border-radius: 8px;
+}
+
+.tutoriales-tabla {
+    width: 100%;
+    min-width: 1040px;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    font-size: 13px;
+}
+
+.tutoriales-tabla thead {
+    background: #f2f5f9;
+}
+
+.tutoriales-tabla th {
+    padding: 14px 13px;
+    border-bottom: 1px solid #dfe5ed;
+    color: #43546a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tutoriales-tabla td {
+    padding: 15px 13px;
+    border-bottom: 1px solid #edf0f4;
+    color: #344456;
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
+.tutoriales-tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tutoriales-tabla tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.tutoriales-tabla tbody tr:hover {
+    background: #f8fafc;
+}
+
+.tutoriales-tabla-vacia {
+    padding: 34px 18px !important;
+    color: #7b8796 !important;
+    text-align: center;
+}
+
+
+/* =========================================================
+   10. VIDEO EN LA TABLA
+   ========================================================= */
+
+.tutoriales-tabla-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 54px;
+    overflow: hidden;
+    background: #eaf0f6;
+    border: 1px solid #dfe5ed;
+    border-radius: 7px;
+    color: #075ca8;
+    font-size: 22px;
+}
+
+.tutoriales-tabla-video video,
+.tutoriales-tabla-video iframe,
+.tutoriales-miniatura-video {
+    display: block;
+    width: 84px;
+    height: 54px;
+    object-fit: cover;
+    background: #eaf0f6;
+    border: 1px solid #dfe5ed;
+    border-radius: 7px;
+}
+
+.tutoriales-tabla-sin-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 54px;
+    padding: 5px;
+    background: #f2f5f9;
+    border: 1px dashed #cbd4df;
+    border-radius: 7px;
+    color: #8b96a5;
+    font-size: 10px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   11. TÍTULO Y DESCRIPCIÓN EN LA TABLA
+   ========================================================= */
+
+.tutoriales-tabla-titulo {
+    display: block;
+    max-width: 280px;
+    margin-bottom: 5px;
+    color: #25364a;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-tabla-descripcion {
+    display: block;
+    max-width: 280px;
+    color: #788597;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-tabla-metadato {
+    display: block;
+    margin-top: 5px;
+    color: #8a95a3;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   12. TIPO DE VIDEO Y CATEGORÍAS
+   ========================================================= */
+
+.tutoriales-tipo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 140px;
+    padding: 6px 9px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-tipo-archivo {
+    background: #eaf3fb;
+    border-color: #c5dcef;
+    color: #075ca8;
+}
+
+.tutoriales-tipo-youtube {
+    background: #fff0ed;
+    border-color: #f2c9c3;
+    color: #ac3025;
+}
+
+.tutoriales-categorias-etiquetas {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-width: 220px;
+}
+
+.tutoriales-categoria-etiqueta {
+    display: inline-flex;
+    align-items: center;
+    max-width: 180px;
+    padding: 4px 8px;
+    background: #f0f6ff;
+    border: 1px solid #d8e7fa;
+    border-radius: 6px;
+    color: #275b91;
+    font-size: 10px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-sin-categorias {
+    color: #8a95a3;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   13. ESTADOS DE PUBLICACIÓN
+   ========================================================= */
+
+.tutoriales-estado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 130px;
+    padding: 5px 9px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-estado-borrador {
+    background: #f1f3f5;
+    border-color: #dfe3e8;
+    color: #526071;
+}
+
+.tutoriales-estado-publicada {
+    background: #eaf7ee;
+    border-color: #c3e7ce;
+    color: #24723e;
+}
+
+.tutoriales-estado-inactiva {
+    background: #fff4e5;
+    border-color: #f4d6a7;
+    color: #8c5b13;
+}
+
+.tutoriales-estado-papelera {
+    background: #fff0f0;
+    border-color: #f0c4c7;
+    color: #aa2935;
+}
+
+
+/* =========================================================
+   14. ACCIONES DE CADA TUTORIAL
+   ========================================================= */
+
+.tutoriales-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    min-width: 170px;
+}
+
+.tutoriales-acciones button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 7px 10px;
+    border: 1px solid #d8dee7;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #344456;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.35;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.tutoriales-acciones button:hover:not(:disabled) {
+    background: #f1f5f9;
+    border-color: #b7c3d1;
+}
+
+.tutoriales-acciones .accion-publicar {
+    background: #eaf7ee;
+    border-color: #c3e7ce;
+    color: #24723e;
+}
+
+.tutoriales-acciones .accion-publicar:hover:not(:disabled) {
+    background: #d8f0e0;
+}
+
+.tutoriales-acciones .accion-inactivar {
+    background: #fff4e5;
+    border-color: #f4d6a7;
+    color: #8c5b13;
+}
+
+.tutoriales-acciones .accion-papelera,
+.tutoriales-acciones .accion-eliminar {
+    background: #fff0f0;
+    border-color: #f0c4c7;
+    color: #aa2935;
+}
+
+.tutoriales-acciones .accion-papelera:hover:not(:disabled),
+.tutoriales-acciones .accion-eliminar:hover:not(:disabled) {
+    background: #ffdddd;
+}
+
+.tutoriales-acciones button:focus-visible {
+    outline: 3px solid rgba(0, 116, 200, 0.25);
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   15. CARGA Y PAGINACIÓN
+   ========================================================= */
+
+.tutoriales-cargando {
+    margin-bottom: 15px;
+    padding: 14px;
+    background: #eef6ff;
+    border-radius: 7px;
+    color: #18578e;
+    font-size: 13px;
+    text-align: center;
+}
+
+.tutoriales-paginacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tutoriales-paginacion span {
+    color: #657386;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+/* =========================================================
+   16. MODALES
+   ========================================================= */
+
+.tutoriales-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.tutoriales-modal-fondo {
+    position: absolute;
+    inset: 0;
+    background: rgba(18, 30, 44, 0.65);
+    backdrop-filter: blur(2px);
+}
+
+.tutoriales-modal-contenido {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    width: min(780px, 100%);
+    max-height: calc(100vh - 48px);
+    overflow: auto;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 14px;
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.24);
+    animation: tutoriales-modal-aparecer 0.2s ease-out;
+}
+
+.tutoriales-modal-categorias-contenido {
+    width: min(680px, 100%);
+}
+
+@keyframes tutoriales-modal-aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tutoriales-modal-encabezado {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px 26px;
+    background: #ffffff;
+    border-bottom: 1px solid #e7ebf0;
+}
+
+.tutoriales-modal-encabezado h2 {
+    margin: 0 0 7px;
+    color: #24364a;
+    font-size: 21px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-modal-encabezado p {
+    margin: 0;
+    color: #7b8796;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.tutoriales-modal-cerrar {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: #f1f4f7;
+    border: 1px solid #e1e6ed;
+    border-radius: 8px;
+    color: #526071;
+    font-size: 25px;
+    line-height: 1;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.tutoriales-modal-cerrar:hover {
+    background: #e5eaf0;
+    color: #1e3045;
+}
+
+
+/* =========================================================
+   17. FORMULARIO DEL TUTORIAL
+   ========================================================= */
+
+#formTutorial {
+    padding: 25px 26px;
+}
+
+#formTutorial > .tutoriales-campo {
+    margin-bottom: 21px;
+}
+
+.tutoriales-seccion-video,
+.tutoriales-seccion-categorias {
+    margin: 8px 0 24px;
+    padding: 20px;
+    background: #f8fafc;
+    border: 1px solid #e5eaf0;
+    border-radius: 10px;
+}
+
+.tutoriales-seccion-encabezado {
+    margin-bottom: 18px;
+}
+
+.tutoriales-seccion-encabezado h3 {
+    margin: 0 0 7px;
+    color: #24364a;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.tutoriales-seccion-encabezado p {
+    margin: 0;
+    color: #778394;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   18. BLOQUES PARA CADA MÉTODO DE VIDEO
+   ========================================================= */
+
+.tutoriales-metodo-video {
+    margin-top: 16px;
+    padding: 17px;
+    background: #ffffff;
+    border: 1px dashed #c7d4e2;
+    border-radius: 9px;
+}
+
+.tutoriales-metodo-video-encabezado {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.tutoriales-metodo-video-encabezado h4 {
+    margin: 0 0 6px;
+    color: #263c53;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.tutoriales-metodo-video-encabezado p {
+    margin: 0;
+    color: #7b8796;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.tutoriales-metodo-video-icono {
+    display: flex;
+    flex: 0 0 38px;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: #eaf3fb;
+    color: #075ca8;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.tutoriales-icono-youtube {
+    background: #fff0ed;
+    color: #c83527;
+}
+
+.tutoriales-metodo-video .tutoriales-campo:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   19. SELECTOR DE ARCHIVOS DE VIDEO
+   ========================================================= */
+
+#inputArchivoVideoTutorial {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 7px;
+    overflow: hidden;
+    background: #f8fafc;
+    border: 1px solid #d6dee8;
+    border-radius: 7px;
+    color: #526071;
+    font-size: 12px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#inputArchivoVideoTutorial:hover {
+    background: #f0f6fc;
+    border-color: #9db8d2;
+}
+
+#inputArchivoVideoTutorial:focus-visible {
+    outline: 3px solid rgba(22, 130, 207, 0.2);
+    outline-offset: 2px;
+}
+
+#inputArchivoVideoTutorial::file-selector-button {
+    min-height: 30px;
+    margin-right: 12px;
+    padding: 7px 12px;
+    background: #eaf3fb;
+    border: 1px solid #c5dcef;
+    border-radius: 5px;
+    color: #075ca8;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+#inputArchivoVideoTutorial::file-selector-button:hover {
+    background: #d9eafa;
+    border-color: #9ec7e8;
+    color: #003f78;
+}
+
+#ayudaArchivoVideoTutorial {
+    display: block;
+    margin-top: 3px;
+    color: #748296;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   20. ESTADO DE SUBIDA
+   ========================================================= */
+
+.tutoriales-estado-carga-video:empty {
+    display: none;
+}
+
+.tutoriales-estado-carga-video:not(:empty) {
+    display: block;
+    margin-top: 7px;
+    padding: 10px 12px;
+    background: #eef6ff;
+    border: 1px solid #d2e6f8;
+    border-left: 3px solid #1682cf;
+    border-radius: 6px;
+    color: #18578e;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   21. VISTA PREVIA DEL VIDEO
+   ========================================================= */
+
+.tutoriales-vista-previa-video {
+    margin-top: 22px;
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #e1e6ed;
+    border-radius: 9px;
+    box-shadow: 0 2px 6px rgba(28, 43, 61, 0.03);
+}
+
+.tutoriales-vista-previa-video-encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.tutoriales-vista-previa-video-encabezado h4 {
+    margin: 0;
+    color: #263c53;
+    font-size: 13px;
+}
+
+.tutoriales-vista-previa-video-encabezado span {
+    color: #7b8796;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-reproductor-contenedor {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #111827;
+    border-radius: 8px;
+}
+
+.tutoriales-reproductor-contenedor video,
+.tutoriales-reproductor-contenedor iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: #111827;
+}
+
+.tutoriales-reproductor-contenedor video {
+    object-fit: contain;
+}
+
+.tutoriales-vista-previa-vacia {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    color: #d6dee8;
+    font-size: 13px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.tutoriales-nombre-video {
+    margin: 10px 0 0;
+    color: #657386;
+    font-size: 11px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-nombre-video:empty {
+    display: none;
+}
+
+
+/* =========================================================
+   22. SELECCIÓN MÚLTIPLE DE CATEGORÍAS
+   ========================================================= */
+
+.tutoriales-categorias-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.tutoriales-categoria-opcion {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 0;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #dfe5ed;
+    border-radius: 7px;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.tutoriales-categoria-opcion:hover {
+    background: #f5f9fd;
+    border-color: #b8d4ed;
+}
+
+.tutoriales-categoria-opcion:focus-within {
+    border-color: #1682cf;
+    box-shadow: 0 0 0 3px rgba(22, 130, 207, 0.1);
+}
+
+.tutoriales-categoria-opcion input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 17px;
+    height: 17px;
+    margin: 2px 0 0;
+    accent-color: #0875bf;
+    cursor: pointer;
+}
+
+.tutoriales-categoria-opcion span {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 4px;
+}
+
+.tutoriales-categoria-opcion strong {
+    color: #344456;
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-categoria-opcion small {
+    color: #7b8796;
+    font-size: 10px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-categorias-cargando {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 15px;
+    background: #ffffff;
+    border: 1px dashed #d2dbe6;
+    border-radius: 7px;
+    color: #7b8796;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.tutoriales-ayuda-categorias {
+    margin: 12px 0 0;
+    color: #778394;
+    font-size: 11px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   23. ACCIONES DE LOS FORMULARIOS
+   ========================================================= */
+
+.tutoriales-formulario-acciones {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+    padding-top: 75px;
+    border-top: 1px solid #e7ebf0;
+}
+
+
+/* =========================================================
+   24. ADMINISTRACIÓN DE CATEGORÍAS
+   ========================================================= */
+
+.tutoriales-categorias-administracion {
+    padding: 24px 26px;
+}
+
+.tutoriales-categorias-administracion form {
+    margin-bottom: 26px;
+}
+
+.tutoriales-categorias-listado-encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding-top: 75px;
+    border-top: 1px solid #e7ebf0;
+}
+
+.tutoriales-categorias-listado-encabezado h3 {
+    margin: 0;
+    color: #24364a;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.tutoriales-lista-administrar-categorias {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tutoriales-categoria-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #e1e6ed;
+    border-radius: 8px;
+}
+
+.tutoriales-categoria-item-inactiva {
+    background: #f7f8fa;
+    border-color: #e1e4e8;
+}
+
+.tutoriales-categoria-info {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.tutoriales-categoria-info strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #263c53;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-categoria-info p {
+    margin: 0 0 7px;
+    color: #778394;
+    font-size: 11px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.tutoriales-categoria-info small {
+    display: inline-block;
+    color: #657386;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.tutoriales-categoria-estado {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 5px;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.tutoriales-categoria-estado.activa {
+    background: #eaf7ee;
+    color: #24723e;
+}
+
+.tutoriales-categoria-estado.inactiva {
+    background: #f1f3f5;
+    color: #526071;
+}
+
+.tutoriales-categoria-acciones {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.tutoriales-categoria-acciones button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 7px 10px;
+    background: #ffffff;
+    border: 1px solid #d8dee7;
+    border-radius: 6px;
+    color: #344456;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.tutoriales-categoria-acciones button:hover:not(:disabled) {
+    background: #f1f5f9;
+    border-color: #b7c3d1;
+}
+
+.tutoriales-categoria-acciones .accion-activar {
+    background: #eaf7ee;
+    border-color: #c3e7ce;
+    color: #24723e;
+}
+
+.tutoriales-categoria-acciones .accion-desactivar {
+    background: #fff4e5;
+    border-color: #f4d6a7;
+    color: #8c5b13;
+}
+
+
+/* =========================================================
+   25. MODO OSCURO
+   ========================================================= */
+
+body.dark-mode.administrar-tutoriales-page {
+    background: #101820;
+}
+
+body.dark-mode .tutoriales-contenido {
+    color: #f1f5f9;
+}
+
+body.dark-mode .tutoriales-encabezado h1,
+body.dark-mode .tutoriales-panel-encabezado h2,
+body.dark-mode .tutoriales-introduccion-item h2,
+body.dark-mode .tutoriales-seccion-encabezado h3,
+body.dark-mode .tutoriales-modal-encabezado h2,
+body.dark-mode .tutoriales-modal-encabezado h3,
+body.dark-mode .tutoriales-metodo-video-encabezado h4,
+body.dark-mode .tutoriales-vista-previa-video-encabezado h4,
+body.dark-mode .tutoriales-categorias-listado-encabezado h3,
+body.dark-mode .tutoriales-categoria-info strong {
+    color: #f1f5f9;
+}
+
+body.dark-mode .tutoriales-encabezado p,
+body.dark-mode .tutoriales-panel-encabezado p,
+body.dark-mode .tutoriales-introduccion-item p,
+body.dark-mode .tutoriales-seccion-encabezado p,
+body.dark-mode .tutoriales-metodo-video-encabezado p,
+body.dark-mode .tutoriales-campo small,
+body.dark-mode .tutoriales-ayuda-categorias,
+body.dark-mode .tutoriales-categoria-info p,
+body.dark-mode .tutoriales-categoria-info small {
+    color: #b5c1cf;
+}
+
+body.dark-mode .tutoriales-panel,
+body.dark-mode .tutoriales-introduccion,
+body.dark-mode .tutoriales-tabla,
+body.dark-mode .tutoriales-categorias-administracion {
+    background: #1b2735;
+    border-color: #3b4b5e;
+}
+
+body.dark-mode .tutoriales-tabla thead {
+    background: #253448;
+}
+
+body.dark-mode .tutoriales-tabla th {
+    color: #d4deea;
+    border-bottom-color: #3b4b5e;
+}
+
+body.dark-mode .tutoriales-tabla td {
+    color: #d4deea;
+    border-bottom-color: #2e3c4d;
+}
+
+body.dark-mode .tutoriales-tabla tbody tr:hover {
+    background: #233144;
+}
+
+body.dark-mode .tutoriales-tabla-titulo {
+    color: #f1f5f9;
+}
+
+body.dark-mode .tutoriales-tabla-descripcion,
+body.dark-mode .tutoriales-tabla-metadato {
+    color: #aab7c6;
+}
+
+body.dark-mode .tutoriales-campo label {
+    color: #d4deea;
+}
+
+body.dark-mode .tutoriales-campo input[type="text"],
+body.dark-mode .tutoriales-campo input[type="search"],
+body.dark-mode .tutoriales-campo input[type="url"],
+body.dark-mode .tutoriales-campo input[type="number"],
+body.dark-mode .tutoriales-campo input[type="file"],
+body.dark-mode .tutoriales-campo select,
+body.dark-mode .tutoriales-campo textarea {
+    color: #f1f5f9;
+    background: #17212e;
+    border-color: #43566c;
+}
+
+body.dark-mode .tutoriales-campo input::placeholder,
+body.dark-mode .tutoriales-campo textarea::placeholder {
+    color: #9baabd;
+}
+
+body.dark-mode .tutoriales-introduccion-separador {
+    background: #3b4b5e;
+}
+
+body.dark-mode .tutoriales-introduccion-icono {
+    background: #263b59;
+    color: #bfdbfe;
+}
+
+body.dark-mode .tutoriales-introduccion-icono.youtube {
+    background: #482c31;
+    color: #ffb4a9;
+}
+
+body.dark-mode .tutoriales-seccion-video,
+body.dark-mode .tutoriales-seccion-categorias {
+    background: #17212e;
+    border-color: #3b4b5e;
+}
+
+body.dark-mode .tutoriales-metodo-video,
+body.dark-mode .tutoriales-vista-previa-video,
+body.dark-mode .tutoriales-categoria-opcion,
+body.dark-mode .tutoriales-categoria-item {
+    background: #1b2735;
+    border-color: #43566c;
+}
+
+body.dark-mode .tutoriales-categoria-item-inactiva {
+    background: #17212e;
+}
+
+body.dark-mode .tutoriales-metodo-video-icono {
+    background: #263b59;
+    color: #bfdbfe;
+}
+
+body.dark-mode .tutoriales-icono-youtube {
+    background: #482c31;
+    color: #ffb4a9;
+}
+
+body.dark-mode .tutoriales-categoria-opcion strong {
+    color: #e2e8f0;
+}
+
+body.dark-mode .tutoriales-categoria-opcion small {
+    color: #aab7c6;
+}
+
+body.dark-mode .tutoriales-categoria-opcion:hover {
+    background: #233144;
+    border-color: #567ca4;
+}
+
+body.dark-mode .tutoriales-categoria-etiqueta {
+    background: #263b59;
+    border-color: #3b5576;
+    color: #bfdbfe;
+}
+
+body.dark-mode .tutoriales-estado-borrador {
+    background: #303b49;
+    border-color: #4b5867;
+    color: #d4deea;
+}
+
+body.dark-mode .tutoriales-estado-publicada,
+body.dark-mode .tutoriales-categoria-estado.activa {
+    background: #193b2a;
+    border-color: #315f43;
+    color: #9de0b2;
+}
+
+body.dark-mode .tutoriales-estado-inactiva,
+body.dark-mode .tutoriales-categoria-estado.inactiva {
+    background: #45351e;
+    border-color: #6b5126;
+    color: #f4d49b;
+}
+
+body.dark-mode .tutoriales-estado-papelera {
+    background: #44272d;
+    border-color: #6f3942;
+    color: #ffb4bc;
+}
+
+body.dark-mode .tutoriales-tipo-archivo {
+    background: #263b59;
+    border-color: #3b5576;
+    color: #bfdbfe;
+}
+
+body.dark-mode .tutoriales-tipo-youtube {
+    background: #482c31;
+    border-color: #76434a;
+    color: #ffb4a9;
+}
+
+body.dark-mode .tutoriales-tabla-sin-video,
+body.dark-mode .tutoriales-tabla-video {
+    background: #17212e;
+    border-color: #43566c;
+    color: #bfdbfe;
+}
+
+body.dark-mode .tutoriales-acciones button,
+body.dark-mode .tutoriales-categoria-acciones button,
+body.dark-mode .tutoriales-contenido .btn-tutoriales-secundario,
+body.dark-mode .tutoriales-modal .btn-tutoriales-secundario {
+    background: #233144;
+    border-color: #43566c;
+    color: #e2e8f0;
+}
+
+body.dark-mode .tutoriales-acciones button:hover:not(:disabled),
+body.dark-mode .tutoriales-categoria-acciones button:hover:not(:disabled),
+body.dark-mode .tutoriales-contenido .btn-tutoriales-secundario:hover:not(:disabled),
+body.dark-mode .tutoriales-modal .btn-tutoriales-secundario:hover:not(:disabled) {
+    background: #2c3c50;
+    border-color: #61758c;
+}
+
+body.dark-mode .tutoriales-acciones .accion-publicar,
+body.dark-mode .tutoriales-categoria-acciones .accion-activar {
+    background: #193b2a;
+    border-color: #315f43;
+    color: #9de0b2;
+}
+
+body.dark-mode .tutoriales-acciones .accion-inactivar,
+body.dark-mode .tutoriales-categoria-acciones .accion-desactivar {
+    background: #45351e;
+    border-color: #6b5126;
+    color: #f4d49b;
+}
+
+body.dark-mode .tutoriales-acciones .accion-papelera,
+body.dark-mode .tutoriales-acciones .accion-eliminar {
+    background: #44272d;
+    border-color: #6f3942;
+    color: #ffb4bc;
+}
+
+body.dark-mode .tutoriales-modal-fondo {
+    background: rgba(0, 0, 0, 0.78);
+}
+
+body.dark-mode .tutoriales-modal-contenido {
+    background: #1b2735;
+    border-color: #3b4b5e;
+}
+
+body.dark-mode .tutoriales-modal-encabezado {
+    background: #1b2735;
+    border-bottom-color: #3b4b5e;
+}
+
+body.dark-mode .tutoriales-modal-encabezado p {
+    color: #b5c1cf;
+}
+
+body.dark-mode .tutoriales-modal-cerrar {
+    background: #263445;
+    border-color: #43566c;
+    color: #e2e8f0;
+}
+
+body.dark-mode .tutoriales-categoria-info {
+    color: #e2e8f0;
+}
+
+body.dark-mode .tutoriales-categorias-listado-encabezado {
+    border-top-color: #3b4b5e;
+}
+
+body.dark-mode .tutoriales-formulario-acciones {
+    border-top-color: #3b4b5e;
+}
+
+
+/* =========================================================
+   26. RESPONSIVE: TABLETS Y PANTALLAS MEDIANAS
+   ========================================================= */
+
+@media (max-width: 1250px) {
+
+    .tutoriales-contenido {
+        padding: 36px 24px 24px;
+    }
+
+    .tutoriales-filtros {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tutoriales-panel {
+        padding: 20px;
+    }
+
+    .tutoriales-encabezado {
+        align-items: flex-start;
+    }
+
+    .tutoriales-encabezado-acciones {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 850px) {
+
+    .tutoriales-introduccion {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .tutoriales-introduccion-separador {
+        width: 100%;
+        height: 1px;
+        min-height: 1px;
+    }
+
+    .tutoriales-encabezado {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tutoriales-encabezado-acciones {
+        max-width: none;
+        justify-content: flex-start;
+    }
+
+    .tutoriales-encabezado-acciones button {
+        flex: 0 1 auto;
+    }
+}
+
+
+/* =========================================================
+   27. RESPONSIVE: CELULARES
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    /*
+     * En pantallas pequeñas se conserva una reserva superior
+     * para que el contenido no quede debajo de la navbar.
+     */
+
+    body.administrar-tutoriales-page .app-container {
+        padding-top: 88px !important;
+    }
+
+    .tutoriales-layout {
+        display: block;
+        min-height: 100vh;
+    }
+
+    .tutoriales-contenido {
+        width: 100%;
+        margin-left: 0;
+        padding: 28px 12px 17px;
+    }
+
+    .tutoriales-encabezado {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+
+    .tutoriales-encabezado h1 {
+        font-size: 25px;
+    }
+
+    .tutoriales-encabezado-acciones {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .tutoriales-encabezado-acciones button {
+        width: 100%;
+    }
+
+    .tutoriales-introduccion {
+        margin-bottom: 16px;
+        padding: 17px 14px;
+        border-radius: 9px;
+    }
+
+    .tutoriales-introduccion-item {
+        gap: 12px;
+    }
+
+    .tutoriales-introduccion-icono {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .tutoriales-panel {
+        margin-bottom: 16px;
+        padding: 16px 12px;
+        border-radius: 9px;
+    }
+
+    .tutoriales-panel-encabezado {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+        margin-bottom: 18px;
+    }
+
+    .tutoriales-panel-encabezado > button {
+        width: 100%;
+    }
+
+    .tutoriales-filtros {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .tutoriales-filtros .tutoriales-campo {
+        margin-bottom: 15px;
+    }
+
+    .tutoriales-tabla {
+        min-width: 1040px;
+    }
+
+    .tutoriales-paginacion {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .tutoriales-paginacion button {
+        flex: 1 1 120px;
+    }
+
+    .tutoriales-paginacion span {
+        order: -1;
+        width: 100%;
+    }
+
+    .tutoriales-modal {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .tutoriales-modal-contenido {
+        width: 100%;
+        max-height: 94vh;
+        border-radius: 14px 14px 0 0;
+    }
+
+    .tutoriales-modal-encabezado {
+        padding: 18px 16px;
+    }
+
+    .tutoriales-modal-encabezado h2 {
+        font-size: 19px;
+    }
+
+    #formTutorial {
+        padding: 20px 16px;
+    }
+
+    .tutoriales-seccion-video,
+    .tutoriales-seccion-categorias {
+        padding: 13px;
+    }
+
+    .tutoriales-metodo-video {
+        padding: 12px;
+    }
+
+    #inputArchivoVideoTutorial {
+        min-height: 46px;
+        padding: 6px;
+        font-size: 11px;
+    }
+
+    #inputArchivoVideoTutorial::file-selector-button {
+        margin-right: 7px;
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    .tutoriales-categorias-checkboxes {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .tutoriales-formulario-acciones {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .tutoriales-formulario-acciones button {
+        width: 100%;
+    }
+
+    .tutoriales-categorias-administracion {
+        padding: 20px 16px;
+    }
+
+    .tutoriales-categoria-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 13px;
+    }
+
+    .tutoriales-categoria-acciones {
+        justify-content: flex-start;
+    }
+
+    .tutoriales-categoria-acciones button {
+        flex: 1 1 auto;
+    }
+
+    .tutoriales-categorias-listado-encabezado {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .tutoriales-categorias-listado-encabezado button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   28. REDUCIR MOVIMIENTO SI EL USUARIO LO PREFIERE
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tutoriales-contenido *,
+    .tutoriales-contenido *::before,
+    .tutoriales-contenido *::after,
+    .tutoriales-modal *,
+    .tutoriales-modal *::before,
+    .tutoriales-modal *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

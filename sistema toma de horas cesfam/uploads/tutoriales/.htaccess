@@ -1,0 +1,7 @@
+# Evitar que se muestre el contenido del directorio.
+Options -Indexes
+
+# Impedir el acceso directo a posibles archivos ejecutables.
+<FilesMatch "\.(php[0-9]*|phtml|phar|cgi|pl|py|sh|shtml|html?)$">
+    Require all denied
+</FilesMatch>

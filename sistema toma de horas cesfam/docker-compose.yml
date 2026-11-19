@@ -1,0 +1,35 @@
+
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: cesfam_web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: cesfam
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:17
+    container_name: cesfam_db
+    environment:
+      POSTGRES_DB: cesfam
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - cesfam_datos:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  cesfam_datos:

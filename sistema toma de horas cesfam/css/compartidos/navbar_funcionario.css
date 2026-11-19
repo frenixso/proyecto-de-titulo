@@ -1,0 +1,743 @@
+
+/* =========================================================
+   NAVBAR FUNCIONARIO - CESFAM
+   ========================================================= */
+
+.navbar-funcionario {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: #0e6378;
+  color: #ffffff;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.navbar-funcionario *,
+.navbar-funcionario *::before,
+.navbar-funcionario *::after {
+  box-sizing: border-box;
+}
+
+.navbar-funcionario-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.navbar-funcionario-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.navbar-funcionario-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.navbar-funcionario-logo svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.navbar-funcionario-title {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.navbar-funcionario-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+
+/* =========================================================
+   NOTIFICACIONES - BOTÓN CAMPANITA
+   ========================================================= */
+
+.navbar-funcionario-notificaciones {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.btn-notification-nav {
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffffff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-notification-nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.btn-notification-nav:active {
+  transform: scale(0.94);
+}
+
+.btn-notification-nav:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.btn-notification-nav svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+
+/* =========================================================
+   CONTADOR DE NOTIFICACIONES
+   ========================================================= */
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -6px;
+
+  min-width: 19px;
+  height: 19px;
+  padding: 0 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ef4444;
+  color: #ffffff;
+
+  border: 2px solid #0e6378;
+  border-radius: 20px;
+
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   PANEL DESPLEGABLE DE NOTIFICACIONES
+   ========================================================= */
+
+.notificaciones-panel {
+  position: absolute;
+  top: calc(100% + 13px);
+  right: 0;
+
+  width: 400px;
+  max-width: calc(100vw - 28px);
+
+  background-color: #ffffff;
+  color: #1f2937;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.16),
+    0 3px 8px rgba(0, 0, 0, 0.06);
+
+  display: none;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  z-index: 1100;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+
+/* Panel abierto */
+
+.notificaciones-panel.notificaciones-panel-abierto {
+  display: flex;
+  animation: aparecerPanelNotificaciones 0.18s ease-out;
+}
+
+
+/* Animación de apertura */
+
+@keyframes aparecerPanelNotificaciones {
+
+  from {
+    opacity: 0;
+    transform: translateY(-7px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   ENCABEZADO DEL PANEL
+   ========================================================= */
+
+.notificaciones-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 16px;
+
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.notificaciones-panel-titulo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  min-width: 0;
+}
+
+.notificaciones-panel-titulo strong {
+  color: #111827;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.notificaciones-panel-titulo span {
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   BOTÓN MARCAR TODAS COMO LEÍDAS
+   ========================================================= */
+
+.btn-marcar-todas-notificaciones {
+  flex-shrink: 0;
+
+  padding: 6px 8px;
+
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+
+  color: #0e6378;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-marcar-todas-notificaciones:hover {
+  background-color: #eaf4f6;
+  color: #084c5d;
+}
+
+.btn-marcar-todas-notificaciones:focus-visible {
+  outline: 2px solid #0e6378;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   LISTA DE NOTIFICACIONES
+   ========================================================= */
+
+.notificaciones-lista {
+  display: flex;
+  flex-direction: column;
+
+  max-height: 390px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+
+/* Scrollbar para navegadores Chromium */
+
+.notificaciones-lista::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notificaciones-lista::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.notificaciones-lista::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 10px;
+}
+
+.notificaciones-lista::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+
+/* =========================================================
+   ELEMENTO INDIVIDUAL
+   ========================================================= */
+
+.notificacion-item {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  padding: 15px 13px;
+
+  border-bottom: 1px solid #f1f5f9;
+
+  background-color: #ffffff;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.notificacion-item:last-child {
+  border-bottom: none;
+}
+
+.notificacion-item:hover {
+  background-color: #f8fafc;
+}
+
+
+/* Notificación sin leer */
+
+.notificacion-item.notificacion-no-leida {
+  background-color: #f0f9fc;
+}
+
+.notificacion-item.notificacion-no-leida:hover {
+  background-color: #e5f3f7;
+}
+
+
+/* =========================================================
+   ICONO DE NOTIFICACIÓN
+   ========================================================= */
+
+.notificacion-item-icon {
+  width: 36px;
+  height: 36px;
+
+  min-width: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #e0f2f6;
+  border-radius: 50%;
+
+  font-size: 17px;
+  line-height: 1;
+}
+
+
+/* =========================================================
+   CONTENIDO
+   ========================================================= */
+
+.notificacion-item-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  min-width: 0;
+  flex: 1;
+}
+
+.notificacion-item-contenido strong {
+  color: #1f2937;
+
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+
+  overflow-wrap: anywhere;
+}
+
+.notificacion-item-contenido p {
+  margin: 0;
+
+  color: #4b5563;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.notificacion-no-leida .notificacion-item-contenido strong {
+  color: #07566a;
+}
+
+.notificacion-item-fecha {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   BOTÓN MARCAR UNA COMO LEÍDA
+   ========================================================= */
+
+.notificacion-marcar-leida {
+  width: 27px;
+  height: 27px;
+
+  min-width: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ffffff;
+
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+
+  color: #0e6378;
+
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.notificacion-marcar-leida:hover {
+  background-color: #0e6378;
+  border-color: #0e6378;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   ESTADO VACÍO
+   ========================================================= */
+
+.notificaciones-vacio {
+  min-height: 130px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px 16px;
+
+  color: #9ca3af;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   ESTADO DE CARGA
+   ========================================================= */
+
+.notificaciones-cargando {
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  text-align: center;
+}
+
+
+/* =========================================================
+   MENÚ USUARIO
+   ========================================================= */
+
+.navbar-funcionario-user {
+  position: relative;
+}
+
+.user-button-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: none;
+  border: none;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  padding: 4px 8px;
+  border-radius: 8px;
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 500;
+
+  margin: 0;
+}
+
+.user-button-nav:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.user-avatar-circle {
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background-color: #3b82f6;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+.user-avatar-circle span {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.user-role-label {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.user-button-nav > svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   DROPDOWN USUARIO
+   ========================================================= */
+
+.user-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+
+  width: 200px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  display: none;
+  flex-direction: column;
+
+  padding: 6px 0;
+
+  z-index: 1050;
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dropdown-item-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 16px;
+
+  color: #374151;
+  text-decoration: none;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.dropdown-item-link:hover {
+  background-color: #f3f4f6;
+}
+
+.dropdown-item-link.text-danger {
+  color: #dc2626;
+}
+
+.dropdown-item-link svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.dropdown-divider-line {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 6px 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .navbar-funcionario-container {
+    padding: 0 14px;
+  }
+
+  .navbar-funcionario-title {
+    font-size: 16px;
+  }
+
+  .navbar-funcionario-actions {
+    gap: 8px;
+  }
+
+  .user-role-label {
+    display: none;
+  }
+
+  .notificaciones-panel {
+    position: fixed;
+
+    top: 73px;
+    right: 14px;
+
+    width: 400px;
+    max-width: calc(100vw - 28px);
+  }
+
+  .notificaciones-lista {
+    max-height: min(65vh, 390px);
+  }
+
+}
+
+
+/* =========================================================
+   PANTALLAS MUY PEQUEÑAS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .navbar-funcionario-title {
+    font-size: 14px;
+  }
+
+  .navbar-funcionario-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .notificaciones-panel-header {
+    padding: 13px 11px;
+  }
+
+  .btn-marcar-todas-notificaciones {
+    font-size: 10px;
+    padding: 5px;
+  }
+
+}

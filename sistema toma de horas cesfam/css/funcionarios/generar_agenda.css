@@ -1,0 +1,734 @@
+
+/* ==========================================
+   SELECTOR DE PROFESIONAL
+========================================== */
+
+.selector-profesional-agenda {
+    background: #ffffff;
+    border: 1px solid #e1e5eb;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.selector-profesional-titulo h3 {
+    margin: 0 0 5px;
+    color: #263445;
+    font-size: 18px;
+}
+
+.selector-profesional-titulo p {
+    margin: 0 0 15px;
+    color: #77818d;
+    font-size: 13px;
+}
+
+.selector-profesional-contenido {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) minmax(220px, 2fr);
+    gap: 12px;
+}
+
+.selector-profesional-contenido input,
+.selector-profesional-contenido select {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 12px;
+    border: 1px solid #d8dee7;
+    border-radius: 7px;
+    background: #fff;
+    font-size: 14px;
+}
+
+#informacionProfesionalAgenda {
+    grid-column: 1 / -1;
+    font-size: 13px;
+    color: #65717f;
+}
+
+/* ==========================================
+   MODAL GENERAR AGENDA
+========================================== */
+
+.modal-generar-agenda {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(20, 30, 45, 0.58);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-generar-agenda.activo {
+    display: flex;
+}
+
+.contenido-modal-generar-agenda {
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 13px;
+    padding: 24px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+}
+
+.encabezado-generar-agenda {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6eaf0;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+}
+
+.encabezado-generar-agenda h2 {
+    color: #25364a;
+    font-size: 21px;
+    margin: 0 0 5px;
+}
+
+.encabezado-generar-agenda p {
+    color: #7a8490;
+    font-size: 13px;
+    margin: 0;
+}
+
+.cerrar-modal-generar-agenda {
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    color: #6d7885;
+    cursor: pointer;
+}
+
+.campo-generar-agenda {
+    margin-bottom: 16px;
+}
+
+.campo-generar-agenda label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #39495a;
+    margin-bottom: 7px;
+}
+
+.campo-generar-agenda input,
+.campo-generar-agenda select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 11px;
+    border: 1px solid #d5dce5;
+    border-radius: 7px;
+    background: #fff;
+    color: #2d3947;
+    font-size: 14px;
+}
+
+.campo-generar-agenda input:focus,
+.campo-generar-agenda select:focus {
+    outline: none;
+    border-color: #1684c7;
+    box-shadow: 0 0 0 3px rgba(22, 132, 199, 0.12);
+}
+
+.campo-generar-agenda input[readonly] {
+    background: #f1f4f7;
+    color: #66717e;
+}
+
+/* ==========================================
+   OPCIONES Y CHECKBOXES
+========================================== */
+
+.opcion-generar-agenda {
+    border: 1px solid #e1e6ed;
+    border-radius: 8px;
+    padding: 13px;
+    margin: 14px 0;
+}
+
+.opcion-generar-agenda label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #344456;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.opcion-generar-agenda input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    accent-color: #087fc0;
+}
+
+.opcion-generar-agenda p {
+    margin: 7px 0 0 26px;
+    color: #7b8591;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   HORARIO DIFERENCIADO
+========================================== */
+
+.horario-diferenciado-campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f5f9fc;
+    border: 1px solid #dbe8f1;
+    border-radius: 8px;
+}
+
+.aviso-horario-diferenciado {
+    grid-column: 1 / -1;
+    color: #536b7d;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   VISTA PREVIA
+========================================== */
+
+
+/* ==========================================
+   VISTA PREVIA DE AGENDA
+========================================== */
+
+.resultado-vista-previa-agenda {
+    width: 100%;
+    margin-top: 22px;
+}
+
+.vista-previa-agenda {
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #dfe7ef;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(15, 42, 68, 0.06);
+}
+
+
+/* ==========================================
+   ENCABEZADO
+========================================== */
+
+.vista-previa-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 24px;
+    background: linear-gradient(135deg, #f5faff, #ffffff);
+    border-bottom: 1px solid #e5edf5;
+}
+
+.vista-previa-etiqueta {
+    display: inline-block;
+    margin-bottom: 7px;
+    color: #0879bd;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.vista-previa-titulo h3 {
+    margin: 0 0 6px;
+    color: #24374b;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.vista-previa-titulo p {
+    margin: 0;
+    color: #7b8998;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.vista-previa-fecha {
+    min-width: 155px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+    padding: 12px 15px;
+    background: #ffffff;
+    border: 1px solid #dceaf6;
+    border-radius: 10px;
+}
+
+.vista-previa-fecha span {
+    color: #8291a0;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.vista-previa-fecha strong {
+    color: #075b9a;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.vista-previa-fecha small {
+    color: #60758a;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   INFORMACIÓN GENERAL
+========================================== */
+
+.vista-previa-informacion {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 20px 24px;
+}
+
+.vista-previa-dato {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 15px;
+    background: #f8fafc;
+    border: 1px solid #e8edf2;
+    border-radius: 9px;
+}
+
+.vista-previa-dato.profesional {
+    border-left: 3px solid #0879bd;
+}
+
+.vista-previa-dato-label {
+    color: #8a97a5;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.vista-previa-dato strong {
+    color: #34475b;
+    font-size: 13px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.vista-previa-dato small {
+    color: #7b8998;
+    font-size: 11px;
+}
+
+
+/* ==========================================
+   INDICADORES
+========================================== */
+
+.vista-previa-indicadores {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    padding: 0 24px 21px;
+}
+
+.vista-previa-indicador {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 15px;
+    background: #f5f9fd;
+    border: 1px solid #e1ebf4;
+    border-radius: 10px;
+}
+
+.vista-previa-indicador .indicador-label {
+    color: #728397;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.vista-previa-indicador strong {
+    color: #075b9a;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.vista-previa-indicador small {
+    color: #91a0af;
+    font-size: 10px;
+}
+
+
+/* ==========================================
+   CONFIGURACIÓN DEL SEGMENTO
+========================================== */
+
+.vista-previa-configuracion {
+    padding: 17px 24px;
+    background: #fafbfd;
+    border-top: 1px solid #edf0f4;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.vista-previa-configuracion-titulo {
+    margin-bottom: 12px;
+}
+
+.vista-previa-configuracion-titulo h4 {
+    margin: 0 0 5px;
+    color: #34475b;
+    font-size: 13px;
+}
+
+.vista-previa-configuracion-titulo p {
+    margin: 0;
+    color: #91a0af;
+    font-size: 11px;
+}
+
+.vista-previa-etiquetas {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.vista-previa-etiqueta-estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 29px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.vista-previa-etiqueta-estado > span {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
+.vista-previa-etiqueta-estado.habilitado {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.vista-previa-etiqueta-estado.habilitado > span {
+    background: #10b981;
+}
+
+.vista-previa-etiqueta-estado.deshabilitado {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.vista-previa-etiqueta-estado.deshabilitado > span {
+    background: #ef4444;
+}
+
+.vista-previa-etiqueta-estado.neutro {
+    background: #edf4fa;
+    color: #536b80;
+}
+
+
+/* ==========================================
+   LISTADO DE CUPOS
+========================================== */
+
+.vista-previa-listado {
+    padding: 20px 24px;
+}
+
+.vista-previa-listado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.vista-previa-listado-header h4 {
+    margin: 0 0 5px;
+    color: #34475b;
+    font-size: 14px;
+}
+
+.vista-previa-listado-header p {
+    margin: 0;
+    color: #91a0af;
+    font-size: 11px;
+}
+
+.vista-previa-total-badge {
+    flex-shrink: 0;
+    padding: 7px 11px;
+    background: #edf6fd;
+    border: 1px solid #d6eaf8;
+    border-radius: 7px;
+    color: #0765a5;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.vista-previa-tabla-contenedor {
+    width: 100%;
+    max-height: 300px;
+    overflow: auto;
+    border: 1px solid #e5eaf0;
+    border-radius: 9px;
+}
+
+.vista-previa-tabla {
+    width: 100%;
+    min-width: 480px;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.vista-previa-tabla thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.vista-previa-tabla th {
+    padding: 12px 13px;
+    background: #f1f6fa;
+    color: #65798c;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    border-bottom: 1px solid #e1e8ef;
+}
+
+.vista-previa-tabla td {
+    padding: 11px 13px;
+    color: #5f7183;
+    text-align: left;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.vista-previa-tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.vista-previa-tabla tbody tr:hover {
+    background: #f8fbfe;
+}
+
+.vista-previa-tabla td strong {
+    color: #34475b;
+    font-size: 12px;
+}
+
+.vista-previa-numero span {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #edf4fa;
+    border-radius: 6px;
+    color: #1769aa;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.vista-previa-duracion {
+    display: inline-block;
+    padding: 5px 8px;
+    background: #f1f5f9;
+    border-radius: 5px;
+    color: #52677c;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.vista-previa-estado-cupo {
+    display: inline-block;
+    padding: 5px 8px;
+    background: #ecfdf5;
+    border-radius: 5px;
+    color: #047857;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   NOTA INFORMATIVA
+========================================== */
+
+.vista-previa-nota {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 24px 22px;
+    padding: 12px 14px;
+    background: #f3f8fc;
+    border: 1px solid #e0edf6;
+    border-radius: 8px;
+}
+
+.vista-previa-nota-icono {
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #dcecf8;
+    border-radius: 50%;
+    color: #1769aa;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.vista-previa-nota p {
+    margin: 0;
+    color: #617589;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.vista-previa-nota strong {
+    color: #315a7b;
+}
+
+
+/* ==========================================
+   RESPONSIVE DE VISTA PREVIA
+========================================== */
+
+@media (max-width: 650px) {
+
+    .vista-previa-encabezado {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    .vista-previa-fecha {
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .vista-previa-informacion {
+        grid-template-columns: 1fr;
+        padding: 16px 18px;
+    }
+
+    .vista-previa-indicadores {
+        grid-template-columns: 1fr;
+        padding: 0 18px 18px;
+    }
+
+    .vista-previa-configuracion {
+        padding: 16px 18px;
+    }
+
+    .vista-previa-listado {
+        padding: 18px;
+    }
+
+    .vista-previa-listado-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .vista-previa-nota {
+        margin: 0 18px 18px;
+    }
+
+}
+
+
+/* ==========================================
+   BOTONES
+========================================== */
+
+.acciones-generar-agenda {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+    border-top: 1px solid #e8ecf1;
+    padding-top: 17px;
+}
+
+.acciones-generar-agenda button {
+    padding: 11px 16px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#btnPrevisualizarAgenda {
+    background: #087fc0;
+    color: white;
+}
+
+#btnCancelarGenerarAgenda {
+    background: #edf0f4;
+    color: #4c5968;
+}
+
+/* ==========================================
+   CELDAS VACÍAS DEL CALENDARIO
+========================================== */
+
+.week-cell-generar {
+    width: 100%;
+    height: 100%;
+    min-height: 34px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.week-cell-generar:hover {
+    background: rgba(8, 127, 192, 0.10);
+}
+
+@media (max-width: 650px) {
+    .selector-profesional-contenido {
+        grid-template-columns: 1fr;
+    }
+
+    .horario-diferenciado-campos {
+        grid-template-columns: 1fr;
+    }
+
+    .contenido-modal-generar-agenda {
+        padding: 17px;
+    }
+}

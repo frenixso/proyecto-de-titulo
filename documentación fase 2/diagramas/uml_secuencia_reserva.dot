@@ -1,0 +1,23 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.4", ranksep="0.65", fontname="Arial", label="Secuencia — comprobación y registro de una reserva", labelloc=t, fontsize=17];
+ node [shape=box, style="rounded,filled", fillcolor="#F3F7FB", color="#2F5D7E", fontname="Arial", fontsize=10, margin="0.16,0.10"];
+ edge [color="#536B7A", fontname="Arial", fontsize=9, arrowsize=0.8];
+ user [label="Visitante\nNavegador"];
+ php [label="PHP\nEndpoint de reservas"];
+ rules [label="Reglas de negocio\nvalidación"];
+ db [label="PostgreSQL"];
+ user -> php [label="1. Solicita disponibilidad"];
+ php -> rules [label="2. Validar entrada"];
+ rules -> db [label="3. Consultar agenda/horarios"];
+ db -> rules [label="4. Resultados"];
+ rules -> php [label="5. Horas disponibles"];
+ php -> user [label="6. Presentar horarios"];
+ user -> php [label="7. Enviar selección y datos"];
+ php -> rules [label="8. Revalidar"];
+ rules -> db [label="9. Verificar estado actual"];
+ db -> rules [label="10. Disponible / ocupado"];
+ rules -> db [label="11. Insertar reserva si procede",style=bold];
+ db -> rules [label="12. Resultado de persistencia"];
+ rules -> php [label="13. Confirmación o conflicto"];
+ php -> user [label="14. Respuesta al visitante"];
+}
