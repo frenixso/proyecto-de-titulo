@@ -1,0 +1,52 @@
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: Docker/PHP/Dockerfile
+    container_name: cesfam_web
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: cesfam
+      DB_USER: postgres
+      DB_PASSWORD: ${DB_PASSWORD:?Configura DB_PASSWORD en .env}
+      APP_BASE_URL: ""
+
+      # CONFIGURACIÓN SMTP BREVO
+      SMTP_HOST: ${SMTP_HOST:-smtp-relay.brevo.com}
+      SMTP_USERNAME: ${SMTP_USERNAME:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_FROM_EMAIL: ${SMTP_FROM_EMAIL:-notificacionhorasmunicatemu.cl@gmail.com}
+      SMTP_FROM_NAME: ${SMTP_FROM_NAME:-Municipalidad}
+
+      # CONFIGURACIÓN CHATBOT GEMINI
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:18
+    container_name: cesfam_db
+    environment:
+      POSTGRES_DB: cesfam
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Configura DB_PASSWORD en .env}
+    volumes:
+      - cesfam_datos_v18:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d cesfam"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  cesfam_datos_v18:

@@ -1,0 +1,9 @@
+.env
+/back up cesfam
+*.backup
+*.dump
+
+!config/correo.php
+!api/chatbot.php
+
+/Database/02_datos.sql

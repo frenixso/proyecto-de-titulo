@@ -1,0 +1,499 @@
+
+/* =========================================================
+   LOGIN - FUNCIONARIOS - CESFAM
+   ========================================================= */
+
+
+/* =========================================================
+   PÁGINA DEL LOGIN
+   ========================================================= */
+
+.login-page {
+
+    min-height: calc(100vh - 70px);
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    padding: 40px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4f8fb 0%,
+            #ffffff 50%,
+            #eef6f8 100%
+        );
+
+}
+
+
+/* =========================================================
+   CONTENEDOR
+   ========================================================= */
+
+.login-container {
+
+    width: 100%;
+
+    max-width: 460px;
+
+    margin: 0 auto;
+
+    transform: translateY(40px);
+}
+
+
+/* =========================================================
+   TARJETA
+   ========================================================= */
+
+.login-card {
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 40px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.10);
+
+    border: 1px solid #e1e8ed;
+
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.login-header {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.login-icon {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0066a6,
+            #2e8b57
+        );
+
+    color: #ffffff;
+
+    font-size: 32px;
+
+}
+
+
+.login-header h1 {
+
+    margin: 0 0 10px;
+
+    color: #004b78;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+}
+
+
+.login-header p {
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+.login-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.form-group label {
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.input-wrapper {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.input-icon {
+
+    position: absolute;
+
+    left: 15px;
+
+    font-size: 18px;
+
+    pointer-events: none;
+
+}
+
+
+.input-wrapper input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 45px 13px 45px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    color: #1e293b;
+
+    background: #ffffff;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.input-wrapper input:focus {
+
+    border-color: #0066a6;
+
+    box-shadow:
+        0 0 0 3px rgba(
+            0,
+            102,
+            166,
+            0.12
+        );
+
+}
+
+
+.input-wrapper input::placeholder {
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================================================
+   MOSTRAR CONTRASEÑA
+   ========================================================= */
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    padding: 7px;
+
+    font-size: 17px;
+
+}
+
+
+/* =========================================================
+   MENSAJE DE ERROR
+   ========================================================= */
+
+.login-message {
+
+    padding: 12px 14px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+}
+
+
+.login-message.error {
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    color: #b91c1c;
+
+}
+
+
+/* =========================================================
+   BOTÓN LOGIN
+   ========================================================= */
+
+.login-button {
+
+    width: 100%;
+
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 14px 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0066a6 0%,
+            #005985 100%
+        );
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.login-button:hover {
+
+    transform: translateY(-1px);
+
+    background:
+        linear-gradient(
+            90deg,
+            #005985 0%,
+            #004b78 100%
+        );
+
+    box-shadow:
+        0 5px 15px rgba(
+            0,
+            75,
+            120,
+            0.25
+        );
+
+}
+
+
+.login-button:active {
+
+    transform: translateY(0);
+
+}
+
+
+/* =========================================================
+   PIE DEL LOGIN
+   ========================================================= */
+
+.login-footer {
+
+    margin-top: 25px;
+
+    text-align: center;
+
+}
+
+
+.login-footer a {
+
+    color: #0066a6;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+
+}
+
+
+.login-footer a:hover {
+
+    color: #004b78;
+
+    text-decoration: underline;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .login-page {
+
+        padding: 30px 20px;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MÓVIL
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .login-page {
+
+        min-height: calc(100vh - 60px);
+
+        padding: 25px 15px;
+
+    }
+
+
+    .login-card {
+
+        padding: 30px 25px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .login-header h1 {
+
+        font-size: 24px;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MÓVIL PEQUEÑO
+   ========================================================= */
+
+@media (max-width: 450px) {
+
+    .login-page {
+
+        padding: 20px 12px;
+
+    }
+
+
+    .login-card {
+
+        padding: 25px 20px;
+
+    }
+
+
+    .login-header h1 {
+
+        font-size: 22px;
+
+    }
+
+
+    .login-header p {
+
+        font-size: 14px;
+
+    }
+
+}
+

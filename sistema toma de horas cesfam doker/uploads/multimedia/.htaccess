@@ -1,0 +1,7 @@
+# No mostrar el listado de archivos de esta carpeta.
+Options -Indexes
+
+# Impedir la ejecución directa de scripts.
+<FilesMatch "(?i)\.(php[0-9]?|phtml|phar|cgi|pl|asp|aspx|jsp|sh|bat|cmd)$">
+    Require all denied
+</FilesMatch>

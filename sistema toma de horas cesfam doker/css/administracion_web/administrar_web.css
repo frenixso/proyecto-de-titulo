@@ -1,0 +1,484 @@
+/* =========================================================
+   ADMINISTRACIÓN WEB - CESFAM
+   Hoja de estilos exclusiva de administrar_web.php
+   Basada en el diseño del portal de funcionarios.
+   ========================================================= */
+
+:root {
+    --aw-primary-color: #0074c8;
+    --aw-primary-dark: #005baa;
+    --aw-primary-light: #eaf4ff;
+
+    --aw-accent-color: #e76f24;
+    --aw-accent-light: #fff0df;
+
+    --aw-bg-main: #f4f6f9;
+    --aw-bg-card: #ffffff;
+
+    --aw-text-main: #1f2937;
+    --aw-text-muted: #6b7280;
+
+    --aw-border-color: #e5e7eb;
+
+    --aw-topbar-height: 72px;
+    --aw-sidebar-width: 260px;
+
+    --aw-radius: 12px;
+
+    --aw-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --aw-shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   1. CONFIGURACIÓN GENERAL
+   ========================================================= */
+
+.adminweb-page,
+.adminweb-page * {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body.adminweb-page {
+    min-height: 100vh;
+    margin: 0;
+
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        sans-serif;
+
+    background-color: var(--aw-bg-main);
+    color: var(--aw-text-main);
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   2. ESTRUCTURA PRINCIPAL
+   ========================================================= */
+
+.adminweb-page .app-container {
+    display: flex;
+
+    min-height: 100vh;
+
+    padding-top: var(--aw-topbar-height);
+}
+
+.adminweb-page .main-content {
+    flex: 1;
+
+    min-width: 0;
+
+    margin-left: var(--aw-sidebar-width);
+
+    padding: 32px 40px;
+}
+
+
+/* =========================================================
+   3. ENCABEZADO DE BIENVENIDA
+   ========================================================= */
+
+.adminweb-page .welcome-header {
+    margin-bottom: 32px;
+}
+
+.adminweb-page .welcome-title {
+    margin: 0;
+
+    color: var(--aw-text-main);
+
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+
+    overflow-wrap: anywhere;
+}
+
+.adminweb-page .welcome-subtitle {
+    margin-top: 8px;
+    margin-bottom: 0;
+
+    color: var(--aw-text-muted);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   4. SECCIONES
+   ========================================================= */
+
+.adminweb-page .quick-access-section {
+    margin-bottom: 36px;
+}
+
+.adminweb-page .appointment-section {
+    margin-top: 32px;
+    margin-bottom: 28px;
+}
+
+.adminweb-page .section-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+.adminweb-page .section-title {
+    display: flex;
+
+    align-items: center;
+    gap: 10px;
+
+    margin: 0;
+
+    color: var(--aw-text-main);
+
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+
+/* Texto introductorio del módulo */
+
+.adminweb-page .quick-access-section > p {
+    max-width: 850px;
+
+    margin: 0 0 22px;
+
+    color: var(--aw-text-muted);
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   5. TARJETAS DE MÓDULOS
+   ========================================================= */
+
+.adminweb-page .quick-access-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+
+    gap: 18px;
+
+    align-items: stretch;
+}
+
+.adminweb-page .quick-card {
+    display: flex;
+
+    align-items: flex-start;
+    gap: 16px;
+
+    min-width: 0;
+    min-height: 124px;
+
+    padding: 20px;
+
+    background: var(--aw-bg-card);
+
+    border: 1px solid var(--aw-border-color);
+    border-radius: var(--aw-radius);
+
+    color: var(--aw-text-main);
+
+    box-shadow: var(--aw-shadow-sm);
+
+    /*
+     * Las tarjetas son informativas por ahora.
+     * No se muestran como enlaces clicables.
+     */
+    cursor: default;
+}
+
+
+/* Icono de cada módulo */
+
+.adminweb-page .quick-card-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 46px;
+
+    width: 46px;
+    height: 46px;
+
+    background: var(--aw-accent-light);
+    color: var(--aw-accent-color);
+
+    border-radius: 11px;
+
+    font-size: 23px;
+    line-height: 1;
+}
+
+
+/* Información de las tarjetas */
+
+.adminweb-page .quick-card-info {
+    display: flex;
+
+    flex: 1;
+    flex-direction: column;
+
+    min-width: 0;
+
+    gap: 6px;
+}
+
+.adminweb-page .quick-card-title {
+    display: block;
+
+    color: var(--aw-text-main);
+
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.45;
+
+    overflow-wrap: anywhere;
+}
+
+.adminweb-page .quick-card-desc {
+    display: block;
+
+    color: var(--aw-text-muted);
+
+    font-size: 13px;
+    line-height: 1.65;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   6. TARJETAS INFORMATIVAS
+   ========================================================= */
+
+.adminweb-page .appointment-card {
+    overflow: hidden;
+
+    background: var(--aw-bg-card);
+
+    border: 1px solid var(--aw-border-color);
+    border-radius: var(--aw-radius);
+
+    box-shadow: var(--aw-shadow-sm);
+}
+
+.adminweb-page .appointment-card-body {
+    padding: 24px;
+}
+
+.adminweb-page .appointment-card-body h3 {
+    margin: 0 0 10px;
+
+    color: var(--aw-text-main);
+
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.adminweb-page .appointment-card-body p {
+    margin: 0;
+
+    color: var(--aw-text-muted);
+
+    font-size: 14px;
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
+}
+
+.adminweb-page .appointment-card-body p + p {
+    margin-top: 12px;
+}
+
+.adminweb-page .appointment-card-body strong {
+    color: var(--aw-text-main);
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   7. DIFERENCIACIÓN VISUAL DEL AVISO INICIAL
+   ========================================================= */
+
+.adminweb-page .appointment-section:last-of-type
+.appointment-card {
+    border-left: 4px solid var(--aw-primary-color);
+}
+
+.adminweb-page .appointment-section:last-of-type
+.appointment-card-body {
+    padding: 22px 24px;
+}
+
+
+/* =========================================================
+   8. SEPARACIÓN Y DISTRIBUCIÓN
+   ========================================================= */
+
+.adminweb-page .main-content > section {
+    width: 100%;
+    min-width: 0;
+}
+
+.adminweb-page .main-content > section + section {
+    margin-top: 28px;
+}
+
+
+/* =========================================================
+   9. RESPONSIVE: TABLETS Y PANTALLAS PEQUEÑAS
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .adminweb-page .main-content {
+        padding: 28px 24px;
+    }
+
+    .adminweb-page .quick-access-grid {
+        grid-template-columns:
+            repeat(auto-fit, minmax(240px, 1fr));
+
+        gap: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   10. RESPONSIVE: MENÚ MÓVIL
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .adminweb-page .main-content {
+        margin-left: 0;
+
+        padding: 24px 20px;
+    }
+
+    .adminweb-page .welcome-header {
+        margin-bottom: 28px;
+    }
+
+    .adminweb-page .welcome-title {
+        font-size: 25px;
+    }
+
+    .adminweb-page .quick-access-grid {
+        grid-template-columns:
+            repeat(auto-fit, minmax(230px, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   11. RESPONSIVE: TELÉFONOS
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .adminweb-page .main-content {
+        padding: 20px 15px;
+    }
+
+    .adminweb-page .welcome-header {
+        margin-bottom: 24px;
+    }
+
+    .adminweb-page .welcome-title {
+        font-size: 23px;
+    }
+
+    .adminweb-page .welcome-subtitle {
+        font-size: 14px;
+    }
+
+    .adminweb-page .section-title {
+        font-size: 19px;
+    }
+
+    .adminweb-page .quick-access-grid {
+        grid-template-columns: 1fr;
+
+        gap: 13px;
+    }
+
+    .adminweb-page .quick-card {
+        min-height: 0;
+
+        padding: 17px;
+        gap: 13px;
+    }
+
+    .adminweb-page .quick-card-icon {
+        flex-basis: 42px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 21px;
+    }
+
+    .adminweb-page .quick-card-title {
+        font-size: 14px;
+    }
+
+    .adminweb-page .quick-card-desc {
+        font-size: 12px;
+    }
+
+    .adminweb-page .appointment-card-body {
+        padding: 19px;
+    }
+
+}
+
+
+/* =========================================================
+   12. ACCESIBILIDAD: REDUCIR MOVIMIENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .adminweb-page *,
+    .adminweb-page *::before,
+    .adminweb-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
